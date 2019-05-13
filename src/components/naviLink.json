@@ -1,0 +1,65 @@
+{
+    "naviLinks": {
+        "home": {
+            "text": "",
+            "address": "animatedHeader1",
+            "hashAddress": "#animatedHeader1"
+        },
+        "QuickOverview": {
+            "text": "W skrócie",
+            "address": "overview",
+            "hashAddress": "#overview"
+        },
+        "Download": {
+            "text": "Pobierz fragment",
+            "address": "download",
+            "hashAddress": "#download"
+        },
+        "Description": {
+            "text": "Opis",
+            "address": "description",
+            "hashAddress": "#description"
+        },
+        "Opinins": {
+            "text": "Opinie",
+            "address": "opinins",
+            "hashAddress": "#opinins"
+        },
+        "AboutAuthor": {
+            "text": "O Autorce",
+            "address": "author",
+            "hashAddress": "#author"
+        }
+    },
+    "naviLinksArray": [{
+            "text": "",
+            "address": "home",
+            "hashAddress": "#home"
+        },
+        {
+            "text": "W skrócie",
+            "address": "overview",
+            "hashAddress": "#overview"
+        },
+        {
+            "text": "Pobierz fragment",
+            "address": "download",
+            "hashAddress": "#download"
+        },
+        {
+            "text": "Opis",
+            "address": "description",
+            "hashAddress": "#description"
+        },
+        {
+            "text": "Opinie",
+            "address": "opinins",
+            "hashAddress": "#opinins"
+        },
+        {
+            "text": "O Autorce",
+            "address": "author",
+            "hashAddress": "#author"
+        }
+    ]
+}
