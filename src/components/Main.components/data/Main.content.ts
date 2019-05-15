@@ -16,12 +16,16 @@ export const QuickOverviewData = {
         "Jak znaleźć dobrego nauczyciela",
         "Jak się uczyć",
         "Jak dbać o instrument"
-    ]
+    ],
+    Image: {
+        srcUrl: "https://d30itml3t0pwpf.cloudfront.net/api/v3/medias/13946557/image/opt/776x1149%3E/1551898978-0407949b",
+        srcLocal: ".src/image/baner3dmp.jpg"
+    }
 }
 export const DownloadData = {
     Header: "Bezpłatny fragment",
     ButtonText: "POBIERZ TERAZ",
-    FiledRequired: "* - Pola wymagane!",
+    FiledRequired: "* - Pola wymagane",
     Name: "Imię",
     Email: "E-mail"
 }

@@ -1,7 +1,8 @@
 import * as React from "react";
-import { naviLinksArray } from "./naviLink.json"
+import { naviLinksArray } from "./naviLink.json";
+import './styles/Nav.scss'
 
-const fData = naviLinksArray[1];
+const fData = naviLinksArray[0];
 const data = naviLinksArray.slice(1);
 
 export default class Nav extends React.Component {
@@ -36,10 +37,7 @@ export default class Nav extends React.Component {
 		return (
 			<>
 				{this.Overlay()}
-				<nav style={{
-					position: "sticky",
-					zIndex: 1000
-				}}>
+				<nav >
 					<input id="checkManuVisible" type="checkbox" />
 					<label htmlFor="checkManuVisible" className="fas fa-align-justify inlineMoreButton" />
 					<div className="navElements">

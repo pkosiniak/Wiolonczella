@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { DescriptionData } from './Main.content';
-import { naviLinks } from '../naviLink.json'
+import { DescriptionData } from './data/Main.content';
+import { naviLinks } from '../naviLink.json';
+import './styles/Description.scss';
+import './styles/Main.Components.scss';
 
 const lData = naviLinks.Description;
 const data = DescriptionData;

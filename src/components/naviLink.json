@@ -2,8 +2,8 @@
     "naviLinks": {
         "home": {
             "text": "",
-            "address": "animatedHeader1",
-            "hashAddress": "#animatedHeader1"
+            "address": "home",
+            "hashAddress": "#home"
         },
         "QuickOverview": {
             "text": "W skrócie",

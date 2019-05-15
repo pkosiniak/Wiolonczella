@@ -1,11 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import Nav from './components/Nav';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import Cookies from './components/Cookies';
 import Header from './components/Header';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
       <Main />
       <Footer />
       <Cookies />
+      <PrivacyPolicy/>
     </>
   );
 }

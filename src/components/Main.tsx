@@ -4,13 +4,33 @@ import Download from "./Main.components/Download";
 import Description from "./Main.components/Description";
 import Opinions from "./Main.components/Opinions";
 import AboutAuthor from "./Main.components/AboutAuthor";
+import { naviLinks } from './naviLink.json';
 // import { Route, Switch, BrowserRouter } from "react-router-dom";
+import './styles/Main.scss';
+// import './styles/AnimatedButton.scss';
+
+
+const data = naviLinks.home
 
 
 export default class Main extends React.Component {
+
+	HomeUpArrowButton = () => {
+
+		return (
+			<a href={data.hashAddress}>
+				<button
+					className="fas fa-angle-up animatedButton"
+					id="homeUpArrow"
+				/>
+			</a>
+		)
+	}
+
 	render() {
 		return (
 			<main>
+				{this.HomeUpArrowButton()}
 				<QuickOverview />
 				<Download />
 				<Description />

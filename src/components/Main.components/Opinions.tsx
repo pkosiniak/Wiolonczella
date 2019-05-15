@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { opinions } from './Opinions.content.json'
+import { opinions } from './data/Opinions.content.json'
 import { naviLinks } from '../naviLink.json'
-import { OpinionData } from './Main.content'
+import { OpinionData } from './data/Main.content'
+import './styles/Opinions.scss'
 
 const oData = opinions;
 const lData = naviLinks.Opinins;

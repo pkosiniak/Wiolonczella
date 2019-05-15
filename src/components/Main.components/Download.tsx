@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { DownloadData } from './Main.content';
+import { DownloadData } from './data/Main.content';
 import DownloadAccept from './DownloadAccept';
-import { naviLinks } from '../naviLink.json'
+import { naviLinks } from '../naviLink.json';
+import './styles/Download.scss';
 
-const lData = naviLinks.Download;
+
+const nData = naviLinks.Download;
 const data = DownloadData;
 
 interface IProps { }
@@ -34,20 +36,14 @@ export default class Download extends React.Component<IProps, IState> {
 		this.setState<"emailInput">({ emailInput: email })
 	}
 
+	onCheckBoxClick = () => {
+		this.setState<'accept'>({ accept: !this.state.accept })
+
+	}
+
 	onSubmiteEvent = (event: React.FormEvent<HTMLFormElement>) => {
 		// alert('klikniete ' + this.state.nameInput + this.state.emailInput);
 		event.preventDefault();
-
-		// const cb = document.getElementById('RodoAcceptCheckBox');
-		// if (cb === null)
-		// 	return;
-		// cb.
-
-		// const acceptForm = document.getElementById('acceptDownloadPrivacyPolicy');
-		// if (acceptForm !== null)
-		// 	acceptForm.removeAttribute('hidden');
-
-
 		alert("pobieranie");
 
 		// make ajax (axios/fetch) call to php - newsletter.php with form data
@@ -57,28 +53,18 @@ export default class Download extends React.Component<IProps, IState> {
 		// if not - fuck you
 	}
 
-	CheckBoxOnClick = () => {
-		this.setState<'accept'>({ accept: !this.state.accept })
 
-	}
 
 	H3Content = () => (
-		<h3 className="divDownload" id={lData.address}>
+		<h3 className="divDownload" id={nData.address}>
 			{data.Header}
 		</h3>
 	)
 
 	DownloadButton = () => {
-		// const onClickHandler = () => {
-		// 	document.getElementById('nameInput').innerText !== ''
-		// 		&& document.getElementById('emailInput').innerText !== ''
-
-		// };
-
 		return (
 			<button
-				className="buttonDownload"
-			// onClick={onClickHandler}
+				className="downloadButton"
 			>
 				{data.ButtonText}
 			</button>
@@ -116,7 +102,9 @@ export default class Download extends React.Component<IProps, IState> {
 			? <div className="inputRequiredStar">*</div>
 			: undefined;
 		return (
-			<label htmlFor={id}>
+			<label
+				className="inputShortTextLabel"
+				htmlFor={id}>
 				{label}
 				{requiredStar}
 			</label>
@@ -125,7 +113,7 @@ export default class Download extends React.Component<IProps, IState> {
 
 	ErrorInput = (visible: boolean) => (
 		<div
-			className="divInputRequiredText"
+			className="downloadInputBlock inputRequiredText"
 			id="errorInputRequired"
 			style={
 				{ display: visible ? 'block' : 'none' }
@@ -136,15 +124,21 @@ export default class Download extends React.Component<IProps, IState> {
 
 	RodoAccept = () => {
 		return (
-			<div>
-				<input
-					id="RodoAcceptCheckBox"
-					type="checkbox"
-					defaultChecked={this.state.accept}
-					onClick={this.CheckBoxOnClick}
-					required
-				/>
-				<label htmlFor="RodoAcceptCheckBox">Wyrażam zgodę na ...</label>
+			<div className="RodoAcceptCheckBox">
+
+				<label htmlFor="RodoAcceptCheckBox" className="container">
+					<input
+						id="RodoAcceptCheckBox"
+						type="checkbox"
+						className="checkbox"
+						defaultChecked={this.state.accept}
+						onClick={this.onCheckBoxClick}
+						required
+					/>
+					<span className="checkmark" />
+					Wyrażam zgodę na ...
+					<div className="inputRequiredStar">*</div>
+				</label>
 			</div>
 		)
 	}
@@ -155,22 +149,24 @@ export default class Download extends React.Component<IProps, IState> {
 				<div>
 					<div className="divDownload">
 						{this.H3Content()}
-						<form className="divOverDowbloadComponents" onSubmit={this.onSubmiteEvent}>
-							<div className="divDownload">
-								{this.DownloadButton()}
-							</div>
-							<div className="divOverTextBoxes">
-								<div className="divDownloadButtonsAndDesc">
-									{this.InputTextLabel(data.Name, 'nameInput', true)}
-									{this.InputName('nameInput')}
+						<form className="downloadComponentsForm" onSubmit={this.onSubmiteEvent}>
+							<div className="downloadComponentsFormBody">
+								<div className="divDownload">
+									{this.DownloadButton()}
 								</div>
-								<div className="divDownloadButtonsAndDesc">
-									{this.InputTextLabel(data.Email, 'emailInput', true)}
-									{this.InputEmail('emailInput')}
+								<div className="downloadInputRightBlock">
+									<div className="downloadInputBlock">
+										{this.InputTextLabel(data.Name, 'nameInput', true)}
+										{this.InputName('nameInput')}
+									</div>
+									<div className="downloadInputBlock">
+										{this.InputTextLabel(data.Email, 'emailInput', true)}
+										{this.InputEmail('emailInput')}
+									</div>
 								</div>
-								{this.ErrorInput(false)}
 							</div>
 							{this.RodoAccept()}
+							{this.ErrorInput(true)}
 						</form>
 					</div>
 				</div>
@@ -179,3 +175,6 @@ export default class Download extends React.Component<IProps, IState> {
 		)
 	}
 }
+
+// 
+// 

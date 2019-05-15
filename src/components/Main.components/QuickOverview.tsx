@@ -1,6 +1,8 @@
 import * as React from "react";
-import * as QuickOverviewData from "./Main.content"
+import * as QuickOverviewData from "./data/Main.content"
 import { naviLinks } from '../naviLink.json'
+import './styles/QuickOverview.scss'
+import './styles/Main.Components.scss'
 
 const lData = naviLinks.QuickOverview;
 const data = QuickOverviewData.QuickOverviewData;
@@ -27,6 +29,13 @@ export default class QuickOverview extends React.Component {
 		))
 	}
 
+	Image = () => (
+		<img
+			src={data.Image.srcUrl}
+			alt=""
+		/>
+	)
+
 	render() {
 		return (
 			<div id={lData.address}>
@@ -42,7 +51,7 @@ export default class QuickOverview extends React.Component {
 				<>
 					{this.List()}
 				</>
-				<img src="https://d30itml3t0pwpf.cloudfront.net/api/v3/medias/13946557/image/opt/776x1149%3E/1551898978-0407949b" />
+				{this.Image()}
 			</div>
 		)
 	}

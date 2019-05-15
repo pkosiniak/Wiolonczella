@@ -1,0 +1,97 @@
+@import 'MyCheckbox.scss';
+.RodoAcceptCheckBox {
+    margin-top: 5px;
+}
+
+.RodoAcceptCheckBox>label {
+    font-size: 16px;
+    font-family: Lato;
+}
+
+.downloadComponentsForm {
+    margin-left: 20%;
+    margin-right: 20%;
+    display: block;
+}
+
+// old: divOverDowbloadComponents
+.downloadComponentsFormBody {
+    // margin-left: 20%;
+    // margin-right: 20%;
+    display: flex;
+}
+
+#downloadForm {
+    display: block;
+}
+
+// old: 	divOverTextBoxes
+.downloadInputRightBlock {
+    padding-left: 3%;
+}
+
+// old: divDownloadButtonsAndDesc
+.downloadInputBlock {
+    font-size: 12px;
+    font-family: Lato;
+    letter-spacing: 1px;
+    color: var(--lightGray);
+}
+
+.inputShortText {
+    padding: 5px;
+}
+
+.inputShortText {
+    display: block;
+}
+
+.inputRequiredStar {
+    display: inline;
+    color: red;
+}
+
+.inputRequiredText {
+    color: red;
+    letter-spacing: 1px;
+}
+
+@keyframes ClickEvent {
+    0% {
+        background-color: gray;
+    }
+    100% {
+        background-color: var(--gray);
+    }
+}
+
+// old: buttonDownload
+.downloadButton {
+    background-color: var(--gold);
+    border: none;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    margin-top: 27px;
+    padding: 20px 16px;
+    outline: none;
+    //  opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.downloadButton:hover {
+    background-color: var(--lightGray);
+    background-color: gray;
+}
+
+.downloadButton:active {
+    animation-name: ClickEvent;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+}
+
+// pewnie potrzebne
+// #downloadEmail {
+// 	margin-top: 1px;
+// }
