@@ -1,0 +1,57 @@
+@media only screen and (max-width: 480px) {
+    // old: divOverDowbloadComponents
+    .downloadComponentsForm,
+    .downloadComponentsFormBody {
+        margin: 0px;
+    }
+    .downloadButton {
+        font-size: 3em;
+        padding: 36px 16px;
+        margin-right: 10px;
+    }
+    // old: 	divOverTextBoxes
+    .downloadInputRightBlock {
+        margin-left: 3px;
+        padding-top: 10px;
+    }
+    .inputShortText {
+        font-size: 18px;
+        width: 100%;
+    }
+    .inputRequiredText {
+        padding-top: 5px;
+    }
+    #errorInputRequired {
+        font-size: 1em;
+    }
+    // old: divDownloadButtonsAndDesc
+    .downloadInputBlock {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .RodoAcceptCheckBox {
+        margin-left: 12px;
+    }
+    .RodoAcceptCheckBox>label {
+        font-size: 16px;
+        font-family: Lato;
+    }
+    #RodoAcceptCheckBoxConteiner {
+        padding-left: 55px;
+    }
+    #RodoAcceptCheckBoxConteiner>a {
+        text-decoration: underline;
+    }
+    .checkmark {
+        margin-top: 10px;
+        height: 32px;
+        width: 32px;
+    }
+    .container .checkmark:after {
+        left: 18px;
+        top: -12px;
+        width: 14px;
+        height: 32px;
+    }
+}

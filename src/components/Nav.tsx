@@ -5,30 +5,49 @@ import './styles/Nav.scss'
 const fData = naviLinksArray[0];
 const data = naviLinksArray.slice(1);
 
-export default class Nav extends React.Component {
+interface IState {
+	showOverlay: boolean
+}
+
+export default class Nav extends React.Component<{}, IState> {
+	constructor() {
+		super({});
+		this.state = {
+			showOverlay: false
+		}
+	}
+
+	onClickOverlayHandler = () => {
+		// this.setState<"showOverlay">({ showOverlay: !this.state.showOverlay });
+		const element = document.getElementById('checkManuVisible');
+		if (element)
+			element.click();
+	}
+
+	onClickHandler = () => {
+		this.setState<"showOverlay">({ showOverlay: !this.state.showOverlay });
+		const element = document.getElementById('navOverlay');
+		if (element)
+			!this.state.showOverlay
+				? element.setAttribute('style', 'display: block')
+				: element.setAttribute('style', 'display: none');
+	}
 
 	Overlay = () => {
 		return (
-			<div className="overlay" style={{
-				display: "none",
-				position: "fixed",
-				top: "0px",
-				left: "0px",
-				width: "100%",
-				height: "100%",
-				backgroundColor: "rgb(15, 15, 15, 0.7)",
-				zIndex: 900,
-
-			}}></div>
+			<div className="overlay" id="navOverlay" ></div>
 		)
 	}
+	//onClick={this.onClickOverlayHandler}
 
 	Links = () => {
 		return (
 			data.map(d => (
-				<div className="navItems">
-					<a href={d.hashAddress}>{d.text}</a>
-				</div>
+				<a href={d.hashAddress}>
+					<div className="navItems" id={'navItemL' + d.address}>
+						{d.text}
+					</div>
+				</a >
 			))
 		)
 	}
@@ -36,15 +55,19 @@ export default class Nav extends React.Component {
 	render() {
 		return (
 			<>
-				{this.Overlay()}
 				<nav >
 					<input id="checkManuVisible" type="checkbox" />
-					<label htmlFor="checkManuVisible" className="fas fa-align-justify inlineMoreButton" />
+					<label
+						htmlFor="checkManuVisible"
+						className="fas fa-align-justify inlineMoreButton"
+						onClick={this.onClickHandler} >
+						{this.Overlay()}
+					</label>
 					<div className="navElements">
-						<i className='fas fa-home navItems'>
-							<a href={fData.hashAddress}>
-							</a>
-						</i>
+						<a href={fData.hashAddress}>
+							<i className='fas fa-home navItems'>
+							</i>
+						</a>
 						{this.Links()}
 					</div>
 				</nav>

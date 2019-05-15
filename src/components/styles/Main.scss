@@ -1,4 +1,4 @@
-@import 'Main.UpArrow.scss';
+@import 'AnimatedButton.scss';
 li {
     line-height: 1.7em;
     /* padding-top: 5px; */
@@ -63,3 +63,20 @@ main>div {
     padding-left: 5%;
     padding-right: 5%;
 }
+
+#homeUpArrow {
+    position: fixed;
+    right: 25px;
+    bottom: 70px;
+    font-size: 3em;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 50%;
+    outline: none;
+    text-align: center;
+    vertical-align: 70%;
+    width: 60px;
+    height: 60px;
+}
+
+@import 'mobile/Main.mobile.scss';

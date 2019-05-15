@@ -2,7 +2,11 @@ import * as React from 'react';
 import './styles/PrivacyPolicy.scss';
 
 
+
 class PrivacyPolicy extends React.Component {
+	// constructor(props: IProps) {
+	// 	super(props);
+	// }
 
 	OnSubmitEvent = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -17,7 +21,7 @@ class PrivacyPolicy extends React.Component {
 				<h2 id="policyHeader">Regulamin	Strony</h2>
 			</span>
 			<button className="closingButton " id="closePolicyButton">
-				<i className="far fa-times-circle animatedButton" id="closePolicyButtonIcon"/>
+				<i className="far fa-times-circle animatedButton" id="closePolicyButtonIcon" />
 			</button>
 		</div>
 	);

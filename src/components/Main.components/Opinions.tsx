@@ -29,7 +29,7 @@ export default class Opinions extends React.Component {
 					<h4 className="reviewerName">
 						{opinion.name}
 					</h4>
-					<h5>
+					<h5 className="reviewerAbout">
 						{opinion.about}
 					</h5>
 				</div>
@@ -42,7 +42,7 @@ export default class Opinions extends React.Component {
 		return (
 			<div>
 				<h3 id={lData.address} > {this.H3Content()}</h3>
-				<div className="elementScrollable">
+				<div >
 					{oData.map(opinion => this.Opinion(opinion))}
 				</div>
 			</div >

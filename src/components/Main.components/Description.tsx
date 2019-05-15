@@ -13,7 +13,7 @@ export default class Description extends React.Component {
 
 	Paragraphs1 = () => {
 		return data.Paragraphs1.map(listItem => (
-			<div>{listItem}</div>
+			<div className=".paragraf">{listItem}</div>
 		))
 	}
 
@@ -25,7 +25,7 @@ export default class Description extends React.Component {
 
 	Paragraphs2 = () => {
 		return data.Paragraphs2.map(listItem => (
-			<div>{listItem}</div>
+			<div className=".paragraf">{listItem}</div>
 		))
 	}
 
@@ -33,7 +33,7 @@ export default class Description extends React.Component {
 		return (
 			<div>
 				{this.H3Content()}
-				<div className="elementScrollable paragraf" id="longDesc">
+				<div className="paragraf" id="longDesc">
 					{this.Paragraphs1()}
 					<ul>
 						{this.List()}

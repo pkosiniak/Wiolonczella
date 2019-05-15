@@ -1,0 +1,19 @@
+@media only screen and (max-width: 480px) {
+    .cookiesBaner {
+        width: 90%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+    .cookieText {
+        width: 65vw;
+        font-size: 13px;
+        padding-top: 0px;
+        margin-bottom: 1px;
+        position: fixed;
+    }
+    #closingCoockiesButton {
+        right: 5px;
+    }
+}

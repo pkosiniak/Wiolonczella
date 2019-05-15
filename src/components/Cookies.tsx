@@ -30,7 +30,7 @@ export default class Cookies extends React.Component {
 				<span className="cookieText">
 					Odwiedzając tę witrynę akceptuje cookies i innne pierdoły związane z rodo
 				</span>
-				<button className=" closingButton2" id="closingCoockiesButton">
+				<button className=" closingButton" id="closingCoockiesButton">
 					<i className="far fa-times-circle animatedButton" id="closingCoockiesButtonIcon" />
 				</button>
 			</form>

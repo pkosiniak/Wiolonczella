@@ -1,6 +1,6 @@
 @keyframes ClickEventInverse {
     0% {
-        background-color: var(--gray);
+        background-color: var(--lightGray);
     }
     100% {
         background-color: gray;
@@ -15,7 +15,7 @@
 }
 
 .animatedButton:hover {
-    background-color: var(--gray);
+    background-color: var(--lightGray);
     color: var(--gold);
 }
 

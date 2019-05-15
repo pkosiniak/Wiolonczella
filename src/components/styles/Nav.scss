@@ -1,3 +1,4 @@
+@import '../styles/Overlay.scss';
 nav {
     position: sticky;
     top: 0px;
@@ -8,6 +9,11 @@ nav {
     font-family: Lato, sans-serif;
     letter-spacing: 2px;
     z-index: 1000;
+}
+
+#navOverlay {
+    display: none;
+    z-index: 999;
 }
 
 .navElements {
@@ -34,8 +40,6 @@ nav {
 .navElements>i,
 .navElements>div {
     background-color: var(--black);
-    //  display: inline-block;
-    //  display: flex;
     padding: 8px;
     cursor: pointer;
 }
@@ -45,7 +49,7 @@ nav {
     cursor: pointer;
 }
 
-.navItems>a {
+a {
     color: var(--light);
     text-decoration: none;
 }
@@ -53,3 +57,5 @@ nav {
 .navItems:hover {
     background-color: var(--gray);
 }
+
+@import 'mobile/Nav.mobile.scss';

@@ -38,21 +38,23 @@ export default class QuickOverview extends React.Component {
 
 	render() {
 		return (
-			<div id={lData.address}>
-				<h3>
-					{this.H3Content()}
-				</h3>
-				<div>
-					{this.Paragraphs()}
+			<>
+				<div id={lData.address}>
+					<h3>
+						{this.H3Content()}
+					</h3>
+					<div>
+						{this.Paragraphs()}
+					</div>
+					<h4>
+						{this.H4Content()}
+					</h4>
+					<>
+						{this.List()}
+					</>
 				</div>
-				<h4>
-					{this.H4Content()}
-				</h4>
-				<>
-					{this.List()}
-				</>
 				{this.Image()}
-			</div>
+			</>
 		)
 	}
 }

@@ -3,6 +3,8 @@ import { DownloadData } from './data/Main.content';
 import DownloadAccept from './DownloadAccept';
 import { naviLinks } from '../naviLink.json';
 import './styles/Download.scss';
+import PrivacyPolicy from '../PrivacyPolicy';
+import Footer from '../Footer';
 
 
 const nData = naviLinks.Download;
@@ -14,6 +16,8 @@ interface IState {
 	nameInput: string;
 	emailInput: string;
 	accept: boolean;
+	showPolicy: boolean;
+	isMobile: boolean;
 }
 
 
@@ -24,7 +28,9 @@ export default class Download extends React.Component<IProps, IState> {
 		this.state = {
 			nameInput: '',
 			emailInput: '',
-			accept: false
+			accept: false,
+			showPolicy: false,
+			isMobile: window.innerWidth <= 480
 		}
 	}
 
@@ -53,7 +59,14 @@ export default class Download extends React.Component<IProps, IState> {
 		// if not - fuck you
 	}
 
-
+	OnClickHandler = () => {
+		this.setState({
+			showPolicy: true
+		});
+		const handler = document.getElementById('showPrivacyPolicy');
+		if (handler !== null)
+			handler.click();
+	}
 
 	H3Content = () => (
 		<h3 className="divDownload" id={nData.address}>
@@ -61,14 +74,24 @@ export default class Download extends React.Component<IProps, IState> {
 		</h3>
 	)
 
-	DownloadButton = () => {
-		return (
+	DownloadButtonContent = () => (
+		<div className="divDownload">
 			<button
 				className="downloadButton"
 			>
 				{data.ButtonText}
 			</button>
-		)
+		</div >
+	)
+
+	DownloadButton = () => {
+		if (!this.state.isMobile)
+			return this.DownloadButtonContent();
+	}
+
+	MobileDownloadButtton = () => {
+		if (this.state.isMobile)
+			return this.DownloadButtonContent();
 	}
 
 	InputName = (id: string) => {
@@ -120,13 +143,17 @@ export default class Download extends React.Component<IProps, IState> {
 			}>
 			{data.FiledRequired}
 		</div>
-	)
+	);
 
 	RodoAccept = () => {
 		return (
 			<div className="RodoAcceptCheckBox">
 
-				<label htmlFor="RodoAcceptCheckBox" className="container">
+				<label 
+				htmlFor="RodoAcceptCheckBox" 
+				className="container"
+				id="RodoAcceptCheckBoxConteiner"
+				>
 					<input
 						id="RodoAcceptCheckBox"
 						type="checkbox"
@@ -136,7 +163,13 @@ export default class Download extends React.Component<IProps, IState> {
 						required
 					/>
 					<span className="checkmark" />
-					Wyrażam zgodę na ...
+					Wyrażam zgodę na
+					<a
+						href="#privacyPolicy"
+						onClick={this.OnClickHandler}
+						className="footerLinks"
+					> Politykę Przywatności </a>
+					strony
 					<div className="inputRequiredStar">*</div>
 				</label>
 			</div>
@@ -151,9 +184,8 @@ export default class Download extends React.Component<IProps, IState> {
 						{this.H3Content()}
 						<form className="downloadComponentsForm" onSubmit={this.onSubmiteEvent}>
 							<div className="downloadComponentsFormBody">
-								<div className="divDownload">
-									{this.DownloadButton()}
-								</div>
+
+								{this.DownloadButton()}
 								<div className="downloadInputRightBlock">
 									<div className="downloadInputBlock">
 										{this.InputTextLabel(data.Name, 'nameInput', true)}
@@ -166,6 +198,7 @@ export default class Download extends React.Component<IProps, IState> {
 								</div>
 							</div>
 							{this.RodoAccept()}
+							{this.MobileDownloadButtton()}
 							{this.ErrorInput(true)}
 						</form>
 					</div>
