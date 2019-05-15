@@ -1,4 +1,26 @@
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1440px) {
+    main {
+        // background-color: rgb(255, 225, 126);
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    img {
+        max-width: 580px;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    main {
+        // background-color: rgb(255, 225, 126);
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    img {
+        max-width: 480px;
+    }
+}
+
+@media only screen and (max-width: 720px) {
     main {
         margin-left: 5%;
         margin-right: 5%;

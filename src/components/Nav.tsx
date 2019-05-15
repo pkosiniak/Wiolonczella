@@ -55,7 +55,7 @@ export default class Nav extends React.Component<{}, IState> {
 	render() {
 		return (
 			<>
-				<nav >
+				<nav id="navBar">
 					<input id="checkManuVisible" type="checkbox" />
 					<label
 						htmlFor="checkManuVisible"

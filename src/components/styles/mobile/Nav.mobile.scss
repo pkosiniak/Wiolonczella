@@ -1,9 +1,24 @@
-@media only screen and (max-width: 480px) {
+// @media only screen and (max-width: 1115px) {}
+@media only screen and (max-width: 1440px) {
+    nav {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    nav {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media only screen and (max-width: 720px) {
     nav {
         padding-top: 3%;
         padding-left: 0%;
         background-color: transparent;
-        font-size: 40px;
+        font-size: 28px;
     }
     #checkManuVisible:checked>div {
         width: 100vw;
@@ -49,5 +64,11 @@
         background-color: var(--black-transp);
         padding: 7%;
         // background-color: var(--black);
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    nav {
+        font-size: 40px;
     }
 }
