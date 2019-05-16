@@ -1,7 +1,8 @@
 import * as React from 'react';
+import {Policy} from './data/Policy.json'
 import './styles/PrivacyPolicy.scss';
 
-
+const data = Policy;
 
 class PrivacyPolicy extends React.Component {
 	// constructor(props: IProps) {
@@ -18,7 +19,7 @@ class PrivacyPolicy extends React.Component {
 	Header = () => (
 		<div className="overlaidFormHeader">
 			<span>
-				<h2 id="policyHeader">Regulamin	Strony</h2>
+				<h2 id="policyHeader">{data.Header}</h2>
 			</span>
 			<button className="closingButton " id="closePolicyButton">
 				<i className="far fa-times-circle animatedButton" id="closePolicyButtonIcon" />
@@ -28,50 +29,7 @@ class PrivacyPolicy extends React.Component {
 
 	Body = () => (
 		<div className="elementScrollable">
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
-			some content some content some content some content
+			{data.Text}
 		</div>
 	)
 

@@ -1,6 +1,9 @@
 import * as React from 'react'
-import './styles/Footer.scss'
 import PrivacyPolicy from './PrivacyPolicy';
+import { FooterData } from './data/Body.json';
+import './styles/Footer.scss';
+
+const data = FooterData;
 
 interface iState {
 	showPolicy: boolean;
@@ -31,17 +34,18 @@ export default class Footer extends React.Component<{}, iState> {
 
 	Policy = () => {
 		return (
-			<a
-				href="#privacyPolicy"
-				id="showPrivacyPolicy"
-				onClick={this.OnClickHandler}
-				className="footerLinks"
-			>
-				Nasz regulamin
+			data.links.map(link => (
+				<a
+					href="#privacyPolicy"
+					id="showPrivacyPolicy"
+					onClick={this.OnClickHandler}
+					className="footerLinks"
+					key={"keyL" + link}
+				>
+					{link}
 				</a>
-
+			))
 		)
-
 	}
 
 	render() {
@@ -54,18 +58,16 @@ export default class Footer extends React.Component<{}, iState> {
 						{this.Policy()}
 					</div>
 					<div className="footerCreatedInfo">
-						version 0.5.0 beta
-				</div>
+						{data.created.Verios}
+					</div>
 					<div className="footerCreatedInfo createdBy">
-						Created by Paweł Kosiniak
-				</div>
+						{data.created.CreatedBy}{data.created.Link}
+					</div>
 					<div className="footerCreatedInfo">
-						2019
+						{data.created.Year}
 				</div>
 				</footer>
 			</>
 		)
 	}
 }
-// >>> FOOTER >>> PUSTY >>> Jakieś pewnie informacje prawnopodobne, kontakt, regulamin (?) etc.
-//         		<br /> gdzieś trzeba będzie wsadzić informacje o rodoKukis.

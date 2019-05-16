@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AboutAuthorData } from './data/Main.content';
-import { naviLinks } from '../naviLink.json';
+import { naviLinks } from '../data/NaviLink.json';
 import './styles/AboutAuthor.scss'
 
 const lData = naviLinks.AboutAuthor;
@@ -13,7 +13,7 @@ export default class AboutAuthor extends React.Component {
 	Paragraphs = () => {
 		return (
 			data.Paragraphs.map(parag => (
-				<div className="aboutAuthor ">{parag}</div>
+				<div className="aboutAuthor" key={"keyL" + parag}>{parag}</div>
 			))
 		)
 	}

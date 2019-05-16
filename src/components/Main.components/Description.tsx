@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DescriptionData } from './data/Main.content';
-import { naviLinks } from '../naviLink.json';
+import { naviLinks } from '../data/NaviLink.json';
 import './styles/Description.scss';
 import './styles/Main.Components.scss';
 
@@ -13,19 +13,19 @@ export default class Description extends React.Component {
 
 	Paragraphs1 = () => {
 		return data.Paragraphs1.map(listItem => (
-			<div className=".paragraf">{listItem}</div>
+			<div className=".paragraf" key={"keyL" + listItem}>{listItem}</div>
 		))
 	}
 
 	List = () => {
 		return data.List.map(listItem => (
-			<li>{listItem}</li>
+			<li key={"liL" + listItem}>{listItem}</li>
 		))
 	}
 
 	Paragraphs2 = () => {
 		return data.Paragraphs2.map(listItem => (
-			<div className=".paragraf">{listItem}</div>
+			<div className=".paragraf" key={"keyL" + listItem}>{listItem}</div>
 		))
 	}
 

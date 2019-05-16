@@ -1,4 +1,3 @@
-@import 'mobile/Header.mobile.scss';
 @keyframes WelcomeHeader {
     from {
         color: transparent;
@@ -36,7 +35,7 @@ header {
 .headerBackgroundImage {
     position: relative;
     background-color: black;
-    background-image: url("/image/backgroundBaner_wv.jpg");
+    background-image: url('../../image/backgroundBaner_wv.jpg');
     background-position: center;
     background-repeat: no-repeat;
     box-shadow: inset 0px 0px 200px black;
@@ -66,3 +65,5 @@ h2 {
     padding-left: 10%;
     padding-right: 10%;
 }
+
+@import 'mobile/Header.mobile.scss';

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { naviLinksArray } from "./naviLink.json";
-import './styles/Nav.scss'
+import { naviLinksArray } from "./data/NaviLink.json";
+import './styles/Nav.scss';
 
 const fData = naviLinksArray[0];
 const data = naviLinksArray.slice(1);
@@ -43,8 +43,8 @@ export default class Nav extends React.Component<{}, IState> {
 	Links = () => {
 		return (
 			data.map(d => (
-				<a href={d.hashAddress}>
-					<div className="navItems" id={'navItemL' + d.address}>
+				<a href={d.hashAddress} key={'navItemL' + d.address}>
+					<div className="navItems" key={'navItemL' + d.address}>
 						{d.text}
 					</div>
 				</a >
@@ -75,17 +75,3 @@ export default class Nav extends React.Component<{}, IState> {
 		)
 	}
 }
-
-
-// <div className="navItems">W skrócie</div>
-// 						<div className="navItems">Opis</div>
-// 						<div className="navItems">Pobierz fragment</div>
-// 						<div className="navItems"><a href="#Opinie">Opinie</a></div>
-// 						<div className="navItems">O Autorce</div>
-
-// <i className='fas fa-home navItems'><NavLink to="/"></NavLink></i>
-// 						<div className="navItems"><NavLink to="/shortcut">W skrócie</NavLink></div>
-// 						<div className="navItems"><NavLink to="/description">Opis</NavLink></div>
-// 						<div className="navItems"><NavLink to="/downloadpart">Pobierz fragment</NavLink></div>
-// 						<div className="navItems"><NavLink to="/opinions">Opinie</NavLink></div>
-// 						<div className="navItems"><NavLink to="/aboutauthor"> O Autorce</NavLink>x	</div>

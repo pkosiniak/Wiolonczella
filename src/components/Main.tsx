@@ -4,7 +4,7 @@ import Download from "./Main.components/Download";
 import Description from "./Main.components/Description";
 import Opinions from "./Main.components/Opinions";
 import AboutAuthor from "./Main.components/AboutAuthor";
-import { naviLinks } from './naviLink.json';
+import { naviLinks } from './data/NaviLink.json';
 import './styles/Main.scss';
 
 

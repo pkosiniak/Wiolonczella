@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { CookiesData } from './data/Body.json'
 import './styles/Cookies.scss';
+
+const data = CookiesData;
 
 export default class Cookies extends React.Component {
 
@@ -17,6 +20,12 @@ export default class Cookies extends React.Component {
 		setTimeout(() => { cookiesBaner.setAttribute('class', 'cookiesBanerHide'); }, 999);
 	}
 
+	OnClickHandler = () => {
+		const handler = document.getElementById('showPrivacyPolicy');
+		if (handler !== null)
+			handler.click();
+	}
+
 	render() {
 		return (
 			<form
@@ -28,7 +37,15 @@ export default class Cookies extends React.Component {
 				<i className="fas fa-cookie-bite" id="cookieIcon" />
 
 				<span className="cookieText">
-					Odwiedzając tę witrynę akceptuje cookies i innne pierdoły związane z rodo
+					{data.Text1}
+					<a
+						href="#privacyPolicy"
+						onClick={this.OnClickHandler}
+						className="footerLinks"
+					>
+						{data.Link}
+					</a>
+					{data.Text2}
 				</span>
 				<button className=" closingButton" id="closingCoockiesButton">
 					<i className="far fa-times-circle animatedButton" id="closingCoockiesButtonIcon" />

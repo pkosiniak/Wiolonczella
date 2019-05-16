@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { opinions } from './data/Opinions.content.json'
-import { naviLinks } from '../naviLink.json'
-import { OpinionData } from './data/Main.content'
-import './styles/Opinions.scss'
+import { opinions } from './data/Opinions.content.json';
+import { naviLinks } from '../data/NaviLink.json';
+import { OpinionData } from './data/Main.content';
+import './styles/Opinions.scss';
 
 const oData = opinions;
 const lData = naviLinks.Opinins;
@@ -15,7 +15,7 @@ export default class Opinions extends React.Component {
 	Lines = (lines: Array<string>) => {
 		return (
 			lines.map(line => (
-				<div>
+				<div key={"keyL" + line}>
 					{line}
 				</div>
 			))
@@ -24,7 +24,7 @@ export default class Opinions extends React.Component {
 
 	Opinion = (opinion: typeof oData[0]) => {
 		return (
-			<div>
+			<div key={"keyL" + opinion.name }>
 				<div>
 					<h4 className="reviewerName">
 						{opinion.name}

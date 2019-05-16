@@ -15,8 +15,10 @@
 
 .overlaidFormHeader {
     display: flex;
-    background-color: var(--white);
-    padding-left: 25%;
+    // background-color: var(--white);
+    background-color: var(--dark);
+    color: var(--light);
+    padding-left: 5%;
 }
 
 #policyHeader {

@@ -1,5 +1,8 @@
 import * as React from "react";
-import './styles/Header.scss'
+import {HeaderData} from './data/Body.json';
+import './styles/Header.scss';
+
+const data = HeaderData;
 
 export default class Header extends React.Component {
 
@@ -8,8 +11,8 @@ export default class Header extends React.Component {
 			<header id="home">
 				<div className="headerBackgroundImage">
 					<div className="pageHeaders">
-						<h1 id="animatedHeader1">Wszystko kojarzy się z wiolonczelą</h1>
-						<h2 id="animatedHeader2">A może wolisz trąbkę? Powiem Ci, jak zacząć grać, nieważne, ile masz lat!</h2>
+						<h1 id="animatedHeader1">{data.Header1}</h1>
+						<h2 id="animatedHeader2">{data.Header2}</h2>
 					</div>
 				</div>
 			</header>

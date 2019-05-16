@@ -27,7 +27,13 @@ export const DownloadData = {
     ButtonText: "POBIERZ TERAZ",
     FiledRequired: "* - Pola wymagane",
     Name: "Imię",
-    Email: "E-mail"
+    Email: "E-mail",
+    Policy: {
+        FirstPart: "Zgazam się na ",
+        PrivacyPolicy: "Politykę Przywatności",
+        LastPart: " strony."
+    }
+    
 }
 
 export const DescriptionData = {

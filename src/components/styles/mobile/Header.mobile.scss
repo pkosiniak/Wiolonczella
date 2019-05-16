@@ -1,8 +1,15 @@
-@media only screen and (max-width: 720px) {
-    h1 {
-        font-size: 106px;
-    }
-    h2 {
-        font-size: 60px;
+@media only screen and (max-width: 1050px) {
+    .headerBackgroundImage {
+        background-size: 190%;
+        // background-size: 200%;
     }
 }
+
+// @media only screen and (max-width: 480px) {
+//     // h1 {
+//     //     font-size: 106px;
+//     // }
+//     // h2 {
+//     //     font-size: 60px;
+//     // }
+// }

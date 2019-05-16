@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { DownloadData } from './data/Main.content';
-import DownloadAccept from './DownloadAccept';
-import { naviLinks } from '../naviLink.json';
+// import DownloadAccept from './DownloadAccept';
+import { naviLinks } from '../data/NaviLink.json';
 import './styles/Download.scss';
-import PrivacyPolicy from '../PrivacyPolicy';
-import Footer from '../Footer';
+// import PrivacyPolicy from '../PrivacyPolicy';
+// import Footer from '../Footer';
 
 
 const nData = naviLinks.Download;
@@ -30,7 +30,7 @@ export default class Download extends React.Component<IProps, IState> {
 			emailInput: '',
 			accept: false,
 			showPolicy: false,
-			isMobile: window.innerWidth <= 480
+			isMobile: window.innerWidth <= 1050
 		}
 	}
 
@@ -48,21 +48,25 @@ export default class Download extends React.Component<IProps, IState> {
 	}
 
 	onSubmiteEvent = (event: React.FormEvent<HTMLFormElement>) => {
-		// alert('klikniete ' + this.state.nameInput + this.state.emailInput);
 		event.preventDefault();
-		alert("pobieranie");
+		
+		const formData = new FormData();
+		formData.append("name", this.state.nameInput);
+		formData.append("email", this.state.emailInput);
+		formData.append("timeStamp", Date.now().toFixed())
 
-		// make ajax (axios/fetch) call to php - newsletter.php with form data
-		// if ok - take returned data
-		// create a download
 
-		// if not - fuck you
+		fetch('http://landing.wariacja.com/.server/api.php', {
+			method: 'POST',
+			body: formData
+		})
+			.then(res => res.json())
+			.then(res => console.log(res)) // to delete
+			.catch(e => console.log(e));
+
 	}
 
 	OnClickHandler = () => {
-		this.setState({
-			showPolicy: true
-		});
 		const handler = document.getElementById('showPrivacyPolicy');
 		if (handler !== null)
 			handler.click();
@@ -149,10 +153,10 @@ export default class Download extends React.Component<IProps, IState> {
 		return (
 			<div className="RodoAcceptCheckBox">
 
-				<label 
-				htmlFor="RodoAcceptCheckBox" 
-				className="container"
-				id="RodoAcceptCheckBoxConteiner"
+				<label
+					htmlFor="RodoAcceptCheckBox"
+					className="container"
+					id="RodoAcceptCheckBoxConteiner"
 				>
 					<input
 						id="RodoAcceptCheckBox"
@@ -163,13 +167,15 @@ export default class Download extends React.Component<IProps, IState> {
 						required
 					/>
 					<span className="checkmark" />
-					Wyrażam zgodę na
+					{data.Policy.FirstPart}
 					<a
 						href="#privacyPolicy"
 						onClick={this.OnClickHandler}
 						className="footerLinks"
-					> Politykę Przywatności </a>
-					strony
+					>
+						{data.Policy.PrivacyPolicy}
+					</a>
+					{data.Policy.LastPart}
 					<div className="inputRequiredStar">*</div>
 				</label>
 			</div>
@@ -203,11 +209,7 @@ export default class Download extends React.Component<IProps, IState> {
 						</form>
 					</div>
 				</div>
-				<DownloadAccept />
 			</>
 		)
 	}
 }
-
-// 
-// 

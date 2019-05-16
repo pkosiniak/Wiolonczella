@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as QuickOverviewData from "./data/Main.content"
-import { naviLinks } from '../naviLink.json'
+import { naviLinks } from '../data/NaviLink.json';
 import './styles/QuickOverview.scss'
 import './styles/Main.Components.scss'
 
@@ -10,12 +10,12 @@ const data = QuickOverviewData.QuickOverviewData;
 export default class QuickOverview extends React.Component {
 
 	H3Content = () => {
-		return data.Header.map(headers => (<div>{headers}</div>))
+		return data.Header.map(headers => (<div key={"keyH" + headers}>{headers}</div>))
 	}
 
 	Paragraphs = () => {
 		return data.Paragraphs.map(lines => (
-			<div className="paragraph">
+			<div className="paragraph" key={"keyH" + lines}>
 				{lines}
 			</div>
 		))
@@ -25,7 +25,7 @@ export default class QuickOverview extends React.Component {
 
 	List = () => {
 		return data.List.map(listItem => (
-			<li key={listItem}>{listItem}</li>
+			<li key={"liL" + listItem}>{listItem}</li>
 		))
 	}
 
