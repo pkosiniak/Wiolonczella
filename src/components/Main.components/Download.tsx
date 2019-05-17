@@ -1,10 +1,12 @@
 import * as React from 'react';
+import axios from 'axios'
 import { DownloadData } from './data/Main.content';
 // import DownloadAccept from './DownloadAccept';
 import { naviLinks } from '../data/NaviLink.json';
 import './styles/Download.scss';
 // import PrivacyPolicy from '../PrivacyPolicy';
 // import Footer from '../Footer';
+
 
 
 const nData = naviLinks.Download;
@@ -49,21 +51,23 @@ export default class Download extends React.Component<IProps, IState> {
 
 	onSubmiteEvent = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		
+
 		const formData = new FormData();
 		formData.append("name", this.state.nameInput);
 		formData.append("email", this.state.emailInput);
 		formData.append("timeStamp", Date.now().toFixed())
-
-
-		fetch('http://landing.wariacja.com/.server/api.php', {
-			method: 'POST',
-			body: formData
-		})
-			.then(res => res.json())
-			.then(res => console.log(res)) // to delete
-			.catch(e => console.log(e));
-
+		
+		axios.post('http://landing.wariacja.com/.server/api.php', formData, { responseType: 'blob' }
+		).then((response) => {
+			const url = window.URL.createObjectURL(new Blob([response.data]));
+			const link = document.createElement('a');
+			link.href = url;
+			link.setAttribute('download', 'file.pdf');
+			document.body.appendChild(link);
+			link.click()
+		},
+			() => console.log('erorrFromServer')
+		).catch(e => console.log(e));
 	}
 
 	OnClickHandler = () => {

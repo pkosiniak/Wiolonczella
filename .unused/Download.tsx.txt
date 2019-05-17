@@ -1,0 +1,15 @@
+		// alert('klikniete ' + this.state.nameInput + this.state.emailInput);
+
+// alert("pobieranie");
+		// const req = new XMLHttpRequest();
+		// req.open("POST",) 
+		// ;= () => JSON.parse(
+		// 	`{"name":${this.state.nameInput}, "email":${this.state.emailInput}}`
+		// )
+
+		
+		// make ajax (axios/fetch) call to php - newsletter.php with form data
+		// if ok - take returned data
+		// create a download
+
+		// if not - fk you
