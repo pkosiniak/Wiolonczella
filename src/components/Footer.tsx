@@ -48,6 +48,23 @@ export default class Footer extends React.Component<{}, iState> {
 		)
 	}
 
+	CreatedBy = () => {
+		return (
+			<>
+				{data.created.CreatedBy}
+				<a
+					href={data.created.LinkRef}
+					id="githubLink"
+					className="footerLinks"
+					rel="noopener noreferrer"
+					target="_blank"
+				>
+					{data.created.LinkName}
+				</a>
+			</>
+		)
+	}
+
 	render() {
 		return (
 			<>
@@ -61,11 +78,11 @@ export default class Footer extends React.Component<{}, iState> {
 						{data.created.Verios}
 					</div>
 					<div className="footerCreatedInfo createdBy">
-						{data.created.CreatedBy}{data.created.Link}
+						{this.CreatedBy()}
 					</div>
 					<div className="footerCreatedInfo">
 						{data.created.Year}
-				</div>
+					</div>
 				</footer>
 			</>
 		)

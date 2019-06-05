@@ -1,26 +1,30 @@
-@keyframes ClickEventInverse {
-    0% {
+    @keyframes ClickEventInverse {
+        0% {
+            background-color: var(--lightGray);
+        }
+        100% {
+            background-color: gray;
+        }
+    }
+    
+    .animatedButton {
+        transition: 0.7s;
+        cursor: pointer;
+        color: var(--lighterGray);
+        background-color: transparent;
+    }
+    
+    .animatedButton:hover,
+    div.animatedButton:hover,
+    button:hover>i.animatedButton {
         background-color: var(--lightGray);
+        color: var(--gold);
     }
-    100% {
-        background-color: gray;
+    
+    .animatedButton:active,
+    div.animatedButton:active,
+    button:active>i.animatedButton {
+        animation-name: ClickEventInverse;
+        animation-duration: 0.4s;
+        animation-fill-mode: both;
     }
-}
-
-.animatedButton {
-    transition: 0.7s;
-    cursor: pointer;
-    color: var(--lighterGray);
-    background-color: transparent;
-}
-
-.animatedButton:hover {
-    background-color: var(--lightGray);
-    color: var(--gold);
-}
-
-.animatedButton:active {
-    animation-name: ClickEventInverse;
-    animation-duration: 0.4s;
-    animation-fill-mode: both;
-}

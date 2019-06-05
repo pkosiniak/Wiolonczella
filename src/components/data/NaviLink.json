@@ -22,8 +22,8 @@
         },
         "Opinins": {
             "text": "Opinie",
-            "address": "opinins",
-            "hashAddress": "#opinins"
+            "address": "opinions",
+            "hashAddress": "#opinions"
         },
         "AboutAuthor": {
             "text": "O Autorce",
@@ -53,8 +53,8 @@
         },
         {
             "text": "Opinie",
-            "address": "opinins",
-            "hashAddress": "#opinins"
+            "address": "opinions",
+            "hashAddress": "#opinions"
         },
         {
             "text": "O Autorce",

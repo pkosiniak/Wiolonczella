@@ -9,9 +9,10 @@
             "Nasz regulamin"
         ],
         "created": {
-            "Verios": "version 0.5.0 beta",
+            "Verios": "version 0.5.2 beta",
             "CreatedBy": "Created by ",
-            "Link": "Paweł Kosiniak",
+            "LinkName": "Paweł Kosiniak",
+            "LinkRef": "https://github.com/pkosiniak",
             "Year": 2019
         }
     },

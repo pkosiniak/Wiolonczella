@@ -19,7 +19,7 @@ export const QuickOverviewData = {
     ],
     Image: {
         srcUrl: "https://d30itml3t0pwpf.cloudfront.net/api/v3/medias/13946557/image/opt/776x1149%3E/1551898978-0407949b",
-        srcLocal: ".src/image/baner3dmp.jpg"
+        srcLocal: "../../../image/baner3dmp.jpg"
     }
 }
 export const DownloadData = {
@@ -29,7 +29,7 @@ export const DownloadData = {
     Name: "Imię",
     Email: "E-mail",
     Policy: {
-        FirstPart: "Zgazam się na ",
+        FirstPart: "Zgadzam się na ",
         PrivacyPolicy: "Politykę Przywatności",
         LastPart: " strony."
     }

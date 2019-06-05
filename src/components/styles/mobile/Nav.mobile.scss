@@ -26,7 +26,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        background-color: #0008;
+        background-color: rgba(0, 0, 0, 0.5);
     }
     #checkManuVisible {
         display: none;
@@ -36,7 +36,6 @@
         background-color: var(--black-transp);
     }
     .inlineMoreButton {
-        // background-color: var(--black);
         padding-left: 13px;
         background-color: transparent;
         display: block;
@@ -56,14 +55,12 @@
     .navElements {
         display: none;
         padding: 0%;
-        // position: fixed;
-        // flex-direction: column;
+        z-index: 1000;
     }
     .navElements>i,
     .navElements>div {
         background-color: var(--black-transp);
         padding: 7%;
-        // background-color: var(--black);
     }
 }
 
