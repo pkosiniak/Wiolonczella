@@ -20,6 +20,7 @@ interface IState {
 	accept: boolean;
 	showPolicy: boolean;
 	isMobile: boolean;
+	showInputError: boolean;
 }
 
 
@@ -32,12 +33,16 @@ export default class Download extends React.Component<IProps, IState> {
 			emailInput: '',
 			accept: false,
 			showPolicy: false,
-			isMobile: window.innerWidth <= 1050
+			isMobile: window.innerWidth <= 1050,
+			showInputError: false
 		}
 	}
 
 	onNameInput = (name: string) => {
-		this.setState<"nameInput">({ nameInput: name })
+		this.setState<'showInputError'>({ showInputError: name.length > 30 });
+		if (name.length > 30) return;
+
+		this.setState<"nameInput">({ nameInput: name });
 	}
 
 	onEmailInput = (email: string) => {
@@ -46,23 +51,18 @@ export default class Download extends React.Component<IProps, IState> {
 
 	onCheckBoxClick = () => {
 		this.setState<'accept'>({ accept: !this.state.accept })
-
 	}
 
 	onSubmiteEvent = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		const json = JSON.stringify({ "name": this.state.nameInput, "email": this.state.emailInput, "timeStamp": Date.now().toFixed() });
 
-		const formData = new FormData();
-		formData.append("name", this.state.nameInput);
-		formData.append("email", this.state.emailInput);
-		formData.append("timeStamp", Date.now().toFixed())
-		
-		axios.post('http://landing.wariacja.com/.server/api.php', formData, { responseType: 'blob' }
+		axios.post('http://landing.wariacja.com/.server/api.php', json, { responseType: 'blob' } 
 		).then((response) => {
 			const url = window.URL.createObjectURL(new Blob([response.data]));
 			const link = document.createElement('a');
 			link.href = url;
-			link.setAttribute('download', 'file.pdf');
+			link.setAttribute('download', 'Wszystko kojaży się z wiolączelą - fragment.pdf');
 			document.body.appendChild(link);
 			link.click()
 		},
@@ -142,14 +142,14 @@ export default class Download extends React.Component<IProps, IState> {
 		)
 	}
 
-	ErrorInput = (visible: boolean) => (
+	ErrorInput = (visible: boolean, nameToLong = false) => (
 		<div
 			className="downloadInputBlock inputRequiredText"
 			id="errorInputRequired"
 			style={
 				{ display: visible ? 'block' : 'none' }
 			}>
-			{data.FiledRequired}
+			{nameToLong ? data.NameToLong : data.FiledRequired}
 		</div>
 	);
 
@@ -209,7 +209,7 @@ export default class Download extends React.Component<IProps, IState> {
 							</div>
 							{this.RodoAccept()}
 							{this.MobileDownloadButtton()}
-							{this.ErrorInput(true)}
+							{this.ErrorInput(true, this.state.showInputError)}
 						</form>
 					</div>
 				</div>

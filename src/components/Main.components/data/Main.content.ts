@@ -26,6 +26,7 @@ export const DownloadData = {
     Header: "Bezpłatny fragment",
     ButtonText: "POBIERZ TERAZ",
     FiledRequired: "* - Pola wymagane",
+    NameToLong: "Limit zanków 30",
     Name: "Imię",
     Email: "E-mail",
     Policy: {
