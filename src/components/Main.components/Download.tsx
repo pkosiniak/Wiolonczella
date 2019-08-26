@@ -21,6 +21,7 @@ interface IState {
 	showPolicy: boolean;
 	isMobile: boolean;
 	showInputError: boolean;
+	errorMessage? :string;
 }
 
 
@@ -38,7 +39,10 @@ export default class Download extends React.Component<IProps, IState> {
 		}
 	}
 
+	resetErrorMessage = () => this.setState<'errorMessage'>({errorMessage: undefined});
+
 	onNameInput = (name: string) => {
+		this.resetErrorMessage();
 		this.setState<'showInputError'>({ showInputError: name.length > 30 });
 		if (name.length > 30) return;
 
@@ -46,27 +50,36 @@ export default class Download extends React.Component<IProps, IState> {
 	}
 
 	onEmailInput = (email: string) => {
+		this.resetErrorMessage();
 		this.setState<"emailInput">({ emailInput: email })
 	}
 
-	onCheckBoxClick = () => {
+	onCheckBoxChange = () => {
+		this.resetErrorMessage();
 		this.setState<'accept'>({ accept: !this.state.accept })
 	}
 
 	onSubmiteEvent = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		this.resetErrorMessage();
 		const json = JSON.stringify({ "name": this.state.nameInput, "email": this.state.emailInput, "timeStamp": Date.now().toFixed() });
 
-		axios.post('http://landing.wariacja.com/.server/api.php', json, { responseType: 'blob' } 
+		axios.post('http://landing.wariacja.com/.server/api.php', json, { responseType: 'blob' }
 		).then((response) => {
 			const url = window.URL.createObjectURL(new Blob([response.data]));
 			const link = document.createElement('a');
 			link.href = url;
 			link.setAttribute('download', 'Wszystko kojaży się z wiolączelą - fragment.pdf');
 			document.body.appendChild(link);
-			link.click()
+			link.click();
+			this.setState<'nameInput'>({ nameInput: '' });
+			this.setState<'emailInput'>({ emailInput: '' });
+			this.setState<'accept'>({ accept: !this.state.accept });
 		},
-			() => console.log('erorrFromServer')
+			(reason) => {
+				console.log('erorr reason: ', reason);
+				this.setState<'errorMessage'>({errorMessage: 'Server error'});
+			}
 		).catch(e => console.log(e));
 	}
 
@@ -142,16 +155,19 @@ export default class Download extends React.Component<IProps, IState> {
 		)
 	}
 
-	ErrorInput = (visible: boolean, nameToLong = false) => (
-		<div
-			className="downloadInputBlock inputRequiredText"
-			id="errorInputRequired"
-			style={
-				{ display: visible ? 'block' : 'none' }
-			}>
-			{nameToLong ? data.NameToLong : data.FiledRequired}
-		</div>
-	);
+	ErrorInput = (visible: boolean, nameToLong = false) => {
+		const message = nameToLong ? data.NameToLong : data.FiledRequired;
+		return (
+			<div
+				className="downloadInputBlock inputRequiredText"
+				id="errorInputRequired"
+				style={
+					{ display: visible ? 'block' : 'none' }
+				}>
+				{this.state.errorMessage || message}
+			</div>
+		)
+	};
 
 	RodoAccept = () => {
 		return (
@@ -166,8 +182,8 @@ export default class Download extends React.Component<IProps, IState> {
 						id="RodoAcceptCheckBox"
 						type="checkbox"
 						className="checkbox"
-						defaultChecked={this.state.accept}
-						onClick={this.onCheckBoxClick}
+						checked={this.state.accept}
+						onChange={this.onCheckBoxChange}
 						required
 					/>
 					<span className="checkmark" />
