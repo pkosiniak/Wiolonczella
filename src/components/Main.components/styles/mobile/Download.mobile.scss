@@ -1,15 +1,13 @@
 @media only screen and (max-width: 480px) {
-    // old: divOverDowbloadComponents
     .downloadComponentsForm,
     .downloadComponentsFormBody {
         margin: 0px;
     }
     .downloadButton {
-        font-size: 3em;
+        font-size: 26px;
         padding: 36px 16px;
         margin-right: 10px;
     }
-    // old: 	divOverTextBoxes
     .downloadInputRightBlock {
         margin-left: 3px;
         padding-top: 10px;
@@ -24,7 +22,6 @@
     #errorInputRequired {
         font-size: 1em;
     }
-    // old: divDownloadButtonsAndDesc
     .downloadInputBlock {
         font-size: 18px;
         margin-top: 10px;

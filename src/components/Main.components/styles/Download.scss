@@ -14,10 +14,7 @@
     display: block;
 }
 
-// old: divOverDowbloadComponents
 .downloadComponentsFormBody {
-    // margin-left: 20%;
-    // margin-right: 20%;
     display: flex;
 }
 
@@ -25,12 +22,10 @@
     display: block;
 }
 
-// old: 	divOverTextBoxes
 .downloadInputRightBlock {
     padding-left: 3%;
 }
 
-// old: divDownloadButtonsAndDesc
 .downloadInputBlock {
     font-size: 12px;
     font-family: Lato;
@@ -65,7 +60,6 @@
     }
 }
 
-// old: buttonDownload
 .downloadButton {
     background-color: var(--gold);
     border: none;
@@ -75,7 +69,6 @@
     margin-top: 27px;
     padding: 20px 16px;
     outline: none;
-    //  opacity: 0.6;
     transition: 0.3s;
     cursor: pointer;
 }
@@ -91,8 +84,4 @@
     animation-fill-mode: both;
 }
 
-// pewnie potrzebne
-// #downloadEmail {
-// 	margin-top: 1px;
-// }
 @import './mobile/Download.mobile.scss'

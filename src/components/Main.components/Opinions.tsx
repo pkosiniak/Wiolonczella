@@ -14,8 +14,8 @@ export default class Opinions extends React.Component {
 
 	Lines = (lines: Array<string>) => {
 		return (
-			lines.map(line => (
-				<div key={"keyL" + line}>
+			lines.map((line, i) => (
+				<div key={i} className="opinionText">
 					{line}
 				</div>
 			))

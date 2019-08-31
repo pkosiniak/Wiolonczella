@@ -11,7 +11,6 @@ export default class Cookies extends React.Component {
 		const cookiesBaner = document.getElementById('cookiesBanerBottom');
 		if (cookiesBaner === null) return;
 		cookiesBaner.setAttribute('class', 'cookiesBaner cookiesBanerAnimation');
-		// cookiesBaner.setAttribute('hidden', 'true');
 
 		const homeUpButton = document.getElementById('homeUpArrow');
 		if (homeUpButton === null) return;

@@ -21,7 +21,7 @@ interface IState {
 	showPolicy: boolean;
 	isMobile: boolean;
 	showInputError: boolean;
-	errorMessage? :string;
+	errorMessage?: string;
 }
 
 
@@ -39,7 +39,17 @@ export default class Download extends React.Component<IProps, IState> {
 		}
 	}
 
-	resetErrorMessage = () => this.setState<'errorMessage'>({errorMessage: undefined});
+	componentDidMount = () => {
+		window.addEventListener('resize', this.windowSizeListener)
+	}
+
+	componentWillUnmount = () => {
+		window.removeEventListener('resize', this.windowSizeListener)
+	}
+
+	windowSizeListener = () => this.setState<'isMobile'>({ isMobile: window.innerWidth <= 1050 });
+
+	resetErrorMessage = () => this.setState<'errorMessage'>({ errorMessage: undefined });
 
 	onNameInput = (name: string) => {
 		this.resetErrorMessage();
@@ -78,7 +88,7 @@ export default class Download extends React.Component<IProps, IState> {
 		},
 			(reason) => {
 				console.log('erorr reason: ', reason);
-				this.setState<'errorMessage'>({errorMessage: 'Server error'});
+				this.setState<'errorMessage'>({ errorMessage: 'Server error' });
 			}
 		).catch(e => console.log(e));
 	}
@@ -95,7 +105,7 @@ export default class Download extends React.Component<IProps, IState> {
 		</h3>
 	)
 
-	DownloadButtonContent = () => (
+	DownloadButton = () => (
 		<div className="divDownload">
 			<button
 				className="downloadButton"
@@ -104,16 +114,6 @@ export default class Download extends React.Component<IProps, IState> {
 			</button>
 		</div >
 	)
-
-	DownloadButton = () => {
-		if (!this.state.isMobile)
-			return this.DownloadButtonContent();
-	}
-
-	MobileDownloadButtton = () => {
-		if (this.state.isMobile)
-			return this.DownloadButtonContent();
-	}
 
 	InputName = (id: string) => {
 		return (
@@ -167,7 +167,7 @@ export default class Download extends React.Component<IProps, IState> {
 				{this.state.errorMessage || message}
 			</div>
 		)
-	};
+	}
 
 	RodoAccept = () => {
 		return (
@@ -210,8 +210,7 @@ export default class Download extends React.Component<IProps, IState> {
 						{this.H3Content()}
 						<form className="downloadComponentsForm" onSubmit={this.onSubmiteEvent}>
 							<div className="downloadComponentsFormBody">
-
-								{this.DownloadButton()}
+								{!this.state.isMobile && this.DownloadButton()}
 								<div className="downloadInputRightBlock">
 									<div className="downloadInputBlock">
 										{this.InputTextLabel(data.Name, 'nameInput', true)}
@@ -224,7 +223,7 @@ export default class Download extends React.Component<IProps, IState> {
 								</div>
 							</div>
 							{this.RodoAccept()}
-							{this.MobileDownloadButtton()}
+							{this.state.isMobile && this.DownloadButton()}
 							{this.ErrorInput(true, this.state.showInputError)}
 						</form>
 					</div>

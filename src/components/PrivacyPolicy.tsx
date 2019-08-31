@@ -5,9 +5,6 @@ import './styles/PrivacyPolicy.scss';
 const data = Policy;
 
 class PrivacyPolicy extends React.Component {
-	// constructor(props: IProps) {
-	// 	super(props);
-	// }
 
 	OnSubmitEvent = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();

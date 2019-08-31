@@ -18,7 +18,6 @@ export default class Nav extends React.Component<{}, IState> {
 	}
 
 	onClickOverlayHandler = () => {
-		// this.setState<"showOverlay">({ showOverlay: !this.state.showOverlay });
 		const element = document.getElementById('checkManuVisible');
 		if (element)
 			element.click();
@@ -38,7 +37,6 @@ export default class Nav extends React.Component<{}, IState> {
 			<div className="overlay" id="navOverlay" ></div>
 		)
 	}
-	//onClick={this.onClickOverlayHandler}
 
 	Links = () => {
 		return (

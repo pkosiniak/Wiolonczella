@@ -7,9 +7,7 @@ import AboutAuthor from "./Main.components/AboutAuthor";
 import { naviLinks } from './data/NaviLink.json';
 import './styles/Main.scss';
 
-
 const data = naviLinks.home
-
 
 export default class Main extends React.Component {
 
@@ -37,9 +35,3 @@ export default class Main extends React.Component {
 		)
 	}
 }
-
-// <Route path="/shortcut" component={QuickOverview} > <QuickOverview /> </Route>
-// 						<Route path="/description" component={Download} />
-// 						<Route path="/downloadpart" component={Description} />
-// 						<Route path="/opinions" component={Opinions} />
-// 						<Route path="/aboutauthor" component={AboutAuthor} />
