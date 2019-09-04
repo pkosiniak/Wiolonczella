@@ -1,11 +1,11 @@
-@import 'ClosingButton.scss';
-@import 'AnimatedButton.scss';
+@import '../styles/ClosingButton.scss';
+@import '../styles/AnimatedButton.scss';
 .cookiesBaner {
     position: fixed;
     bottom: 0px;
     width: 75%;
     // background-color: #cccc;
-    background-color: rgba(204, 204, 204, 0.8);
+    background-color: #cccccccc;
     padding-left: 25%;
     padding-right: 25%;
     padding-top: 7px;
@@ -56,4 +56,4 @@
     display: none;
 }
 
-@import './mobile/Cookies.mobile.scss'
+@import './Cookies.mobile.scss'

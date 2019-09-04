@@ -1,16 +1,16 @@
 :root {
-    --black: rgb(15, 15, 15);
-    --black-transp: rgba(15, 15, 15, 0.7);
-    --dark: rgb(30, 30, 30);
-    --gray: rgb(50, 50, 50);
-    --lightGray: rgb(80, 80, 80);
-    --lighterGray: rgb(100, 100, 100);
-    --light: rgb(236, 236, 236);
+    --black: #0f0f0f;
+    --black-transp: #0f0f0fb3;
+    --dark: #1e1e1e;
+    --gray: #323232;
+    --lightGray: #505050;
+    --lighterGray: #646464;
+    --light: #ececec;
     --white: #fff;
-    --gold: rgb(206, 156, 18);
+    --gold: #ce9c12;
     --back: #fafaf0;
-    --lightGreen: rgb(107, 255, 96);
-    --coral: rgb(255, 122, 89);
+    --lightGreen: #6bff60;
+    --coral: #ff7a59;
 }
 
 html {

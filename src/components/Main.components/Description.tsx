@@ -9,38 +9,35 @@ const data = DescriptionData;
 
 export default class Description extends React.Component {
 
-	H3Content = () => <h3 id={lData.address}> {data.Header} </h3>;
+   H3Content = () => <h3 id={lData.address}> {data.Header} </h3>;
 
-	Paragraphs1 = () => {
-		return data.Paragraphs1.map(listItem => (
-			<div className=".paragraf" key={"keyL" + listItem}>{listItem}</div>
-		))
-	}
+   Paragraphs1 = () =>
+      data.Paragraphs1.map((listItem) => (
+         <div className=".paragraf" key={'keyL' + listItem}>{listItem}</div>
+      ));
 
-	List = () => {
-		return data.List.map(listItem => (
-			<li key={"liL" + listItem}>{listItem}</li>
-		))
-	}
+   List = () =>
+      data.List.map((listItem) => (
+         <li key={'liL' + listItem}>{listItem}</li>
+      ));
 
-	Paragraphs2 = () => {
-		return data.Paragraphs2.map(listItem => (
-			<div className=".paragraf" key={"keyL" + listItem}>{listItem}</div>
-		))
-	}
+   Paragraphs2 = () =>
+      data.Paragraphs2.map((listItem) => (
+         <div className=".paragraf" key={'keyL' + listItem}>{listItem}</div>
+      ));
 
-	render() {
-		return (
-			<div>
-				{this.H3Content()}
-				<div className="paragraf" id="longDesc">
-					{this.Paragraphs1()}
-					<ul>
-						{this.List()}
-					</ul>
-					{this.Paragraphs2()}
-				</div>
-			</div>
-		)
-	}
+   render() {
+      return (
+         <div>
+            {this.H3Content()}
+            <div className="paragraf" id="longDesc">
+               {this.Paragraphs1()}
+               <ul>
+                  {this.List()}
+               </ul>
+               {this.Paragraphs2()}
+            </div>
+         </div>
+      );
+   }
 }

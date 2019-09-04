@@ -14,12 +14,12 @@
 }
 
 @media only screen and (max-width: 720px) {
-    nav {
-        padding-top: 3%;
-        padding-left: 0%;
-        background-color: transparent;
-        font-size: 28px;
-    }
+    //  nav {
+    //      padding-top: 3%;
+    //      padding-left: 0%;
+    //      background-color: transparent;
+    //      font-size: 28px;
+    //  }
     #checkManuVisible:checked>div {
         width: 100vw;
         height: 100vh;
@@ -46,7 +46,7 @@
     #checkManuVisible:checked~.inlineMoreButton {
         color: var(--black);
     }
-    #checkManuVisible:checked~.navElements {
+    #checkMenuVisible:checked~.navElements {
         display: flex;
         flex-direction: column;
         position: absolute;
