@@ -1,234 +1,233 @@
 import * as React from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import { DownloadData } from './data/Main.content';
-// import DownloadAccept from './DownloadAccept';
 import { naviLinks } from '../data/NaviLink.json';
 import './styles/Download.scss';
-// import PrivacyPolicy from '../PrivacyPolicy';
-// import Footer from '../Footer';
-
-
 
 const nData = naviLinks.Download;
 const data = DownloadData;
 
-interface IProps { }
-
 interface IState {
-	nameInput: string;
-	emailInput: string;
-	accept: boolean;
-	showPolicy: boolean;
-	isMobile: boolean;
-	showInputError: boolean;
-	errorMessage?: string;
+   nameInput: string;
+   emailInput: string;
+   accept: boolean;
+   showPolicy: boolean;
+   isMobile: boolean;
+   showInputError: boolean;
+   errorMessage?: string;
 }
 
+export default class Download extends React.Component<{}, IState> {
+   constructor(props: {}) {
+      super(props);
+      this.state = {
+         nameInput: '',
+         emailInput: '',
+         accept: false,
+         showPolicy: false,
+         isMobile: window.innerWidth <= 1050,
+         showInputError: false,
+      };
+   }
 
-export default class Download extends React.Component<IProps, IState> {
+   componentDidMount = () => {
+      window.addEventListener('resize', this.windowSizeListener);
+   };
 
-	constructor(props: IProps) {
-		super(props);
-		this.state = {
-			nameInput: '',
-			emailInput: '',
-			accept: false,
-			showPolicy: false,
-			isMobile: window.innerWidth <= 1050,
-			showInputError: false
-		}
-	}
+   componentWillUnmount = () => {
+      window.removeEventListener('resize', this.windowSizeListener);
+   };
 
-	componentDidMount = () => {
-		window.addEventListener('resize', this.windowSizeListener)
-	}
+   windowSizeListener = () => this.setState<'isMobile'>({ isMobile: window.innerWidth <= 1050 });
 
-	componentWillUnmount = () => {
-		window.removeEventListener('resize', this.windowSizeListener)
-	}
+   resetErrorMessage = () => this.setState<'errorMessage'>({ errorMessage: undefined });
 
-	windowSizeListener = () => this.setState<'isMobile'>({ isMobile: window.innerWidth <= 1050 });
+   onNameInput = (name: string) => {
+      this.resetErrorMessage();
+      this.setState<'showInputError'>({ showInputError: name.length > 30 });
+      if (name.length > 30) { return; }
 
-	resetErrorMessage = () => this.setState<'errorMessage'>({ errorMessage: undefined });
+      this.setState<'nameInput'>({ nameInput: name });
+   };
 
-	onNameInput = (name: string) => {
-		this.resetErrorMessage();
-		this.setState<'showInputError'>({ showInputError: name.length > 30 });
-		if (name.length > 30) return;
+   onEmailInput = (email: string) => {
+      this.resetErrorMessage();
+      this.setState<'emailInput'>({ emailInput: email });
+   };
 
-		this.setState<"nameInput">({ nameInput: name });
-	}
+   onCheckBoxChange = () => {
+      this.resetErrorMessage();
+      this.setState<'accept'>({ accept: !this.state.accept });
+   };
 
-	onEmailInput = (email: string) => {
-		this.resetErrorMessage();
-		this.setState<"emailInput">({ emailInput: email })
-	}
+   onSubmitEvent = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      this.resetErrorMessage();
+      const json = JSON.stringify({ name: this.state.nameInput, email: this.state.emailInput, timeStamp: Date.now().toFixed() });
+      // eslint-disable-next-line no-restricted-globals
+      this.axiosWorker(`${location.href}.server/api.php`, json);
+   };
 
-	onCheckBoxChange = () => {
-		this.resetErrorMessage();
-		this.setState<'accept'>({ accept: !this.state.accept })
-	}
+   axiosWorker = (serverAddress: string, json: string) => {
+      axios.post(serverAddress, json, { responseType: 'blob' }
+      ).then((response) => {
+         const url = window.URL.createObjectURL(new Blob([response.data]));
+         const link = document.createElement('a');
+         link.href = url;
+         link.setAttribute('download', 'Wszystko kojaży się z wiolączelą - fragment.pdf');
+         document.body.appendChild(link);
+         link.click();
+         this.setState<'nameInput'>({ nameInput: '' });
+         this.setState<'emailInput'>({ emailInput: '' });
+         this.setState<'accept'>({ accept: !this.state.accept });
+      },
+         (reason) => {
+         // tslint:disable-next-line: no-console
+            console.log(reason);
+            this.setState<'errorMessage'>({ errorMessage: 'Server error' });
+         }
+      );
+   };
 
-	onSubmiteEvent = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		this.resetErrorMessage();
-		const json = JSON.stringify({ "name": this.state.nameInput, "email": this.state.emailInput, "timeStamp": Date.now().toFixed() });
+   OnClickHandler = () => {
+      const handler = document.getElementById('showPrivacyPolicy');
+      if (handler !== null) {
+         handler.click();
+      }
+   };
 
-		axios.post('http://landing.wariacja.com/.server/api.php', json, { responseType: 'blob' }
-		).then((response) => {
-			const url = window.URL.createObjectURL(new Blob([response.data]));
-			const link = document.createElement('a');
-			link.href = url;
-			link.setAttribute('download', 'Wszystko kojaży się z wiolączelą - fragment.pdf');
-			document.body.appendChild(link);
-			link.click();
-			this.setState<'nameInput'>({ nameInput: '' });
-			this.setState<'emailInput'>({ emailInput: '' });
-			this.setState<'accept'>({ accept: !this.state.accept });
-		},
-			(reason) => {
-				console.log('erorr reason: ', reason);
-				this.setState<'errorMessage'>({ errorMessage: 'Server error' });
-			}
-		).catch(e => console.log(e));
-	}
+   H3Content = () => (
+      <h3 className="divDownload" id={nData.address}>
+         {data.Header}
+      </h3>
+   );
 
-	OnClickHandler = () => {
-		const handler = document.getElementById('showPrivacyPolicy');
-		if (handler !== null)
-			handler.click();
-	}
+   DownloadButton = () => (
+      <div className="divDownload">
+         <button
+            className="downloadButton"
+         >
+            {data.ButtonText}
+         </button>
+      </div >
+   );
 
-	H3Content = () => (
-		<h3 className="divDownload" id={nData.address}>
-			{data.Header}
-		</h3>
-	)
+   onInputNameChange = (event: React.ChangeEvent<HTMLInputElement>) => this.onNameInput(event.target.value);
 
-	DownloadButton = () => (
-		<div className="divDownload">
-			<button
-				className="downloadButton"
-			>
-				{data.ButtonText}
-			</button>
-		</div >
-	)
+   InputName = (id: string) =>
+      (
+         <input
+            className="inputShortText"
+            type="text"
+            id={id}
+            value={this.state.nameInput}
+            onChange={this.onInputNameChange}
+            required
+         />
+      );
 
-	InputName = (id: string) => {
-		return (
-			<input
-				className="inputShortText"
-				type="text"
-				id={id}
-				value={this.state.nameInput}
-				onChange={event => this.onNameInput(event.target.value)}
-				required
-			/>
-		)
-	}
+   onInputEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => this.onEmailInput(event.target.value);
 
-	InputEmail = (id: string) => {
-		return (
-			<input
-				className="inputShortText"
-				type="email"
-				id={id}
-				value={this.state.emailInput}
-				onChange={event => this.onEmailInput(event.target.value)}
-				required
-			/>
-		)
-	}
+   InputEmail = (id: string) =>
+      (
+         <input
+            className="inputShortText"
+            type="email"
+            id={id}
+            value={this.state.emailInput}
+            onChange={this.onInputEmailChange}
+            required
+         />
+      );
 
-	InputTextLabel = (label: string, id: string, required: boolean = true) => {
-		const requiredStar = required
-			? <div className="inputRequiredStar">*</div>
-			: undefined;
-		return (
-			<label
-				className="inputShortTextLabel"
-				htmlFor={id}>
-				{label}
-				{requiredStar}
-			</label>
-		)
-	}
+   InputTextLabel = (label: string, id: string, required: boolean = true) => {
+      const requiredStar = required
+         ? <div className="inputRequiredStar">*</div>
+         : undefined;
+      return (
+         <label
+            className="inputShortTextLabel"
+            htmlFor={id}
+         >
+            {label}
+            {requiredStar}
+         </label>
+      );
+   };
 
-	ErrorInput = (visible: boolean, nameToLong = false) => {
-		const message = nameToLong ? data.NameToLong : data.FiledRequired;
-		return (
-			<div
-				className="downloadInputBlock inputRequiredText"
-				id="errorInputRequired"
-				style={
-					{ display: visible ? 'block' : 'none' }
-				}>
-				{this.state.errorMessage || message}
-			</div>
-		)
-	}
+   ErrorInput = (visible: boolean, nameToLong = false) => {
+      const message = nameToLong ? data.NameToLong : data.FiledRequired;
+      return (
+         <div
+            className="downloadInputBlock inputRequiredText"
+            id="errorInputRequired"
+            style={
+               { display: visible ? 'block' : 'none' }}
+         >
+            {this.state.errorMessage || message}
+         </div>
+      );
+   };
 
-	RodoAccept = () => {
-		return (
-			<div className="RodoAcceptCheckBox">
+   RodoAccept = () =>
+      (
+         <div className="RodoAcceptCheckBox">
 
-				<label
-					htmlFor="RodoAcceptCheckBox"
-					className="container"
-					id="RodoAcceptCheckBoxConteiner"
-				>
-					<input
-						id="RodoAcceptCheckBox"
-						type="checkbox"
-						className="checkbox"
-						checked={this.state.accept}
-						onChange={this.onCheckBoxChange}
-						required
-					/>
-					<span className="checkmark" />
-					{data.Policy.FirstPart}
-					<a
-						href="#privacyPolicy"
-						onClick={this.OnClickHandler}
-						className="footerLinks"
-					>
-						{data.Policy.PrivacyPolicy}
-					</a>
-					{data.Policy.LastPart}
-					<div className="inputRequiredStar">*</div>
-				</label>
-			</div>
-		)
-	}
+            <label
+               htmlFor="RodoAcceptCheckBox"
+               className="container"
+               id="RodoAcceptCheckBoxConteiner"
+            >
+               <input
+                  id="RodoAcceptCheckBox"
+                  type="checkbox"
+                  className="checkbox"
+                  checked={this.state.accept}
+                  onChange={this.onCheckBoxChange}
+                  required
+               />
+               <span className="checkmark" />
+               {data.Policy.FirstPart}
+               <a
+                  href="#privacyPolicy"
+                  onClick={this.OnClickHandler}
+                  className="footerLinks"
+               >
+                  {data.Policy.PrivacyPolicy}
+               </a>
+               {data.Policy.LastPart}
+               <div className="inputRequiredStar">*</div>
+            </label>
+         </div>
+      );
 
-	render() {
-		return (
-			<>
-				<div>
-					<div className="divDownload">
-						{this.H3Content()}
-						<form className="downloadComponentsForm" onSubmit={this.onSubmiteEvent}>
-							<div className="downloadComponentsFormBody">
-								{!this.state.isMobile && this.DownloadButton()}
-								<div className="downloadInputRightBlock">
-									<div className="downloadInputBlock">
-										{this.InputTextLabel(data.Name, 'nameInput', true)}
-										{this.InputName('nameInput')}
-									</div>
-									<div className="downloadInputBlock">
-										{this.InputTextLabel(data.Email, 'emailInput', true)}
-										{this.InputEmail('emailInput')}
-									</div>
-								</div>
-							</div>
-							{this.RodoAccept()}
-							{this.state.isMobile && this.DownloadButton()}
-							{this.ErrorInput(true, this.state.showInputError)}
-						</form>
-					</div>
-				</div>
-			</>
-		)
-	}
+   render() {
+      return (
+         <>
+            <div>
+               <div className="divDownload">
+                  {this.H3Content()}
+                  <form className="downloadComponentsForm" onSubmit={this.onSubmitEvent}>
+                     <div className="downloadComponentsFormBody">
+                        {!this.state.isMobile && this.DownloadButton()}
+                        <div className="downloadInputRightBlock">
+                           <div className="downloadInputBlock">
+                              {this.InputTextLabel(data.Name, 'nameInput', true)}
+                              {this.InputName('nameInput')}
+                           </div>
+                           <div className="downloadInputBlock">
+                              {this.InputTextLabel(data.Email, 'emailInput', true)}
+                              {this.InputEmail('emailInput')}
+                           </div>
+                        </div>
+                     </div>
+                     {this.RodoAccept()}
+                     {this.state.isMobile && this.DownloadButton()}
+                     {this.ErrorInput(true, this.state.showInputError)}
+                  </form>
+               </div>
+            </div>
+         </>
+      );
+   }
 }
