@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { colors } from '../../styles/constants';
+import styled from 'styled-components';
+import { colors } from '../../assets/styles';
 
 export const Overlay = styled.div`
    z-index: 900;
@@ -12,7 +12,7 @@ export const Overlay = styled.div`
    /* z-index: 2000; */
 `;
 
-export const StyledCheckBox = styled.input`
+export const HiddenCheckBox = styled.input`
    color: ${colors.lighterGray};
    display: none;
    visibility: hidden;
@@ -21,7 +21,7 @@ export const StyledCheckBox = styled.input`
    }
 `;
 
-export const InlineMorButton = styled.label`
+export const StyledBurgerLabel = styled.label`
    padding-left: 13px;
    background-color: transparent;
    display: block;

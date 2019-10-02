@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { naviLinksArray } from '../data/NaviLink.json';
-import './Nav.scss';
-import Responsive from '../Responsive/Reasponsive';
+import { naviLinksArray } from '../../components/data/NaviLink.json';
+import Responsive from '../../components/Responsive/Responsive';
 import * as P from './parts';
-import { Width } from '../../styles/constants';
+import Column from '../../components/Column/Column';
 
 const fData = naviLinksArray[0];
 const data = naviLinksArray.slice(1);
@@ -38,11 +37,11 @@ export const Nav: React.FC = () => {
    const Links = (
       <>
          <P.StyledNavLink href={fData.hashAddress}>
-            <P.StyledHomeIcon className="fas fa-home navItems" />
+            <P.StyledHomeIcon className="fas fa-home " />
          </P.StyledNavLink>
          {data.map((d, i) => (
             <P.StyledNavLink href={d.hashAddress} key={i}>
-               <P.StyledNavItem className="navItems" key={i}>
+               <P.StyledNavItem key={i}>
                   {d.text}
                </P.StyledNavItem>
             </P.StyledNavLink>
@@ -52,27 +51,33 @@ export const Nav: React.FC = () => {
 
    return (
       <Responsive>
-         {({ device }) => (
-            <P.NavWrapper id="navBar">
-               {device.width <= Width.tablet && (
-                  <>
-                     <P.Mobile.StyledCheckBox id="checkMenuVisible" type="checkbox" />
-                     <P.Mobile.InlineMorButton
+         {({ lessThen }) => (
+            <P.NavWrapper >
+               {lessThen('tablet')
+                  ? (
+                     <P.Mobile.StyledBurgerLabel
                         htmlFor="checkMenuVisible"
                         className="fas fa-align-justify "
-                        onClick={onClickHandler}
                      >
-                        {showOverlay && <P.Mobile.Overlay
-                           id="navOverlay"
-                        />}
-                     </P.Mobile.InlineMorButton>
-                  </>
-               )}
-               <P.NavElementsWrapper
-                  className="navElements"
-               >
-                  {Links}
-               </P.NavElementsWrapper>
+                        <P.Mobile.HiddenCheckBox
+                           id="checkMenuVisible"
+                           type="checkbox"
+                           onClick={onClickHandler}
+                        />
+                        {showOverlay && (
+                           <>
+                              {Links}
+                              <P.Mobile.Overlay />
+                           </>
+                        )}
+                     </P.Mobile.StyledBurgerLabel>
+                  ) : (
+                     <Column>
+                        <P.NavElementsWrapper>
+                           {Links}
+                        </P.NavElementsWrapper>
+                     </Column>
+                  )}
             </P.NavWrapper>
          )}
       </Responsive>
