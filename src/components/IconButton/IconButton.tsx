@@ -1,19 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
-import StyledIcon from '../StyledIcon/StyledIcon';
+import StyledIcon, { StyledIconProps } from '../StyledIcon/StyledIcon';
+import * as P from './parts';
 
 export interface IconButtonProps {
-   className: string;
+   onClick?: () => void;
 }
 
+const IconButton: React.FC<IconButtonProps & StyledIconProps> = ({ className, id, onClick, rectangle, square }) => (
+   <P.Button onClick={onClick}>
+      <StyledIcon className={className} id={id} rectangle={rectangle} square={square} />
+   </P.Button>
+);
 
-const IconButton: React.FC<> = () => {
-   const Button = styled.button``;
-
-   return (
-      <Button>
-         <StyledIcon />
-      </Button>
-   )
-}
 export default IconButton;

@@ -1,13 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import * as P from './parts';
 
 export interface StyledIconProps {
    className: string;
+   id?: string;
+   rectangle?: P.Rectangle;
+   square?: number;
 }
 
-const StyledIcon: React.FC<StyledIconProps> = ({ className }) => {
-   const Icon = styled.i``;
-   return <Icon className={className} />;
-};
+const StyledIcon: React.FC<StyledIconProps> = ({ className, id, rectangle, square }) => (
+   <P.Icon
+      className={className}
+      id={id}
+      width={(square && square) || (rectangle && rectangle.width)}
+      height={(square && square) || (rectangle && rectangle.height)}
+   />
+);
 
 export default StyledIcon;
