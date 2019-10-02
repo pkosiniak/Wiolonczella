@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { mediaTo } from '../assets/constants';
+import { mediaTo } from '../assets/styles';
 
 interface StyledButtonGroupProps { top?: number; bottom?: number; }
 
