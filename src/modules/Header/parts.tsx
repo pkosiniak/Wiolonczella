@@ -1,11 +1,11 @@
 import styled, { css, keyframes } from 'styled-components';
-import { colors, imgSrc, mediaMaxWidth } from '../../styles/constants';
+import { colors, imgSrc, mediaTo } from '../../assets/styles';
 
 export const HeaderWrapper = styled.header`
-	position: relative; // ?
+	position: relative;
    margin: 0;
-   top: 0px; // ?
-   left: 0px; // ?
+   top: 0px;
+   left: 0px;
    width: 100%;
    height: 100%;
    text-align: center;
@@ -14,17 +14,15 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const HeaderBackgroundImage = styled.div`
-   position: relative; // ?
    background-color: ${colors.black};
    background-image: ${imgSrc};
    background-position: center;
    background-repeat: no-repeat;
    box-shadow: inset 0 0 200px black;
    background-size: 150%;
-   ${mediaMaxWidth('desktop', `
+   ${mediaTo('desktop')} {
         background-size: 190%;
-   `
-   )}
+   }
 `;
 
 export const PageHeadersWrapper = styled.div`
@@ -57,7 +55,6 @@ export const MainTitle = styled.h1`
 `;
 
 export const Subtitle = styled.h2`
-   font-family: arial, helvetica, sans-serif;
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
    font-weight: bold;
    font-size: 28px;
