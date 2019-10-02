@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { font, color, mediaMaxWidth } from '../../styles/constants';
+import { font, color, mediaMaxWidth } from '../../assets/styles';
 
 export const StyledFooter = styled.footer`
    margin-top: 60px;
