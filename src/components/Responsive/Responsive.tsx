@@ -4,7 +4,7 @@ import { Width, IDevice, Device, DeviceType } from '../../assets/styles';
 export interface ResponsiveProps {
    children: (
       state: {
-         lessThen: (breakpoint: DeviceType) => boolean;
+         lessThenOrEqualTo: (breakpoint: DeviceType) => boolean;
          device: IDevice;
          isMobile: boolean;
          isSTablet: boolean;
@@ -55,17 +55,17 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
    };
 
    devicePicker = (width: number): IDevice => {
-      if (width < Width.mobile)
+      if (width <= Width.mobile)
          return {
             name: Device.mobile.name,
             width: Device.mobile.width,
          };
-      if (width < Width.sTablet)
+      if (width <= Width.sTablet)
          return {
             name: Device.sTablet.name,
             width: Device.sTablet.width,
          };
-      if (width < Width.tablet)
+      if (width <= Width.tablet)
          return {
             name: Device.tablet.name,
             width: Device.tablet.width,
@@ -76,7 +76,7 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
       };
    };
 
-   lessThen = (breakpoint: DeviceType) => {
+   lessThenOrEqualTo = (breakpoint: DeviceType) => {
       const { isDesktop, isTablet, isSTablet, isMobile } = this.state;
       switch (breakpoint) {
          case Device.desktop.name:
@@ -96,7 +96,7 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
       const { device, isMobile, isSTablet, isTablet, isDesktop } = this.state;
       return this.props.children(
          {
-            lessThen: this.lessThen,
+            lessThenOrEqualTo: this.lessThenOrEqualTo,
             device,
             isMobile,
             isSTablet,

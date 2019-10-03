@@ -67,9 +67,11 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
             <P.TriggerWrapper onClick={onTriggerClick}>
                {getTrigger}
             </P.TriggerWrapper>
-            <P.LayoutWrapper ref={this.layoutRef} isDropdownOpen={isDropdownOpen} >
-               {getChildren}
-            </P.LayoutWrapper>
+            <P.RelativeWrapper>
+               <P.LayoutWrapper ref={this.layoutRef} isDropdownOpen={isDropdownOpen} >
+                  {getChildren}
+               </P.LayoutWrapper>
+            </P.RelativeWrapper>
          </P.Wrapper>
       );
    }

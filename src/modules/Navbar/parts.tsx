@@ -1,57 +1,73 @@
 import styled, { css } from 'styled-components';
-import { colors, mediaTo } from '../../assets/styles';
-import * as mobile from './parts.mobile';
-
-export const Mobile = mobile;
+import { colors, mediaTo, backgroundColor, color, font } from '../../assets/styles';
+import LinkButton from '../../components/LinkButton/LinkButton';
 
 export const NavWrapper = styled.nav`
    position: sticky;
    top: 0px;
+   margin-right: auto;
    background-color: ${colors.black};
    color: ${colors.light};
-   font-family: Lato, sans-serif;
-   letter-spacing: 2px;
    z-index: 1000;
 
    ${mediaTo('tablet')} {
-      padding-top: 3%;
       background-color: transparent;
-      font-size: 28px;
+      width: fit-content;
    }
 `;
 
-export const NavElementsWrapper = styled.div`
+const styledMenu = css`
+   margin: 0;
    display: flex;
+   padding-inline-start: 0;
+   list-style: none;
+`;
+
+export const NavElementsWrapper = styled.menu`
+   ${styledMenu}
    background-color: ${colors.black};
-   /* flex-direction: row; */
-   /* ${mediaTo('tablet')} {
-      display: none;
-      z-index: 1000;
-   } */
 `;
 
-export const StyledNavLink = styled.a`
-   color: ${colors.light};
-   text-decoration: none;
+export const DropdownLayout = styled.menu`
+   ${styledMenu}
+   z-index: 1000;
+   flex-direction: column;
+   flex-grow: 1;
+   ${backgroundColor('overlay')}
+`;
+
+export const NavLinkButton = styled(LinkButton)`
+   padding: 8px 12px;
+   display: flex;
    cursor: pointer;
+   &>button {
+      ${color('light')}
+      ${font('navbar')}
+      font-family: Lato, sans-serif;
+      letter-spacing: 2px;
+   }
+   &:hover {
+      ${backgroundColor('darkGray')}
+   }
+   ${mediaTo('tablet')} {
+      padding: 12px 16px;
+      &>button {
+         ${font('navbarMobile')}
+      }
+   }
 `;
 
-export const NavItem = css`
-    padding: 8px;
-    &:hover {
-       background-color: ${colors.darkGray}
-    }
+export const ListItem = styled.li`
+   padding: 0;
 `;
 
-export const StyledHomeIcon = styled.i`
-   ${NavItem}
-`;
+export const StyledHomeIcon = styled.i``;
 
-export const StyledNavItem = styled.div`
-   ${NavItem}
+export const BurgerIconWrapper = styled.i`
+   font-size: 28px;
+   padding: 16px;
+   background-color: transparent;
+   position: sticky;
+   text-align: start;
+   color: ${colors.lighterGray};
 `;
-
-// ${mediaMaxWidth('tablet', css`
-//       background-color: ${color.blackTransparent};
-//       padding: 7%;
-//    `)}

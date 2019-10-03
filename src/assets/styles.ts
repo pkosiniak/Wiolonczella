@@ -44,11 +44,13 @@ export const setFont = (size: number, lineHeight?: number, fontStyle?: string) =
    ${fontStyle && css`font-style:${fontStyle};`}
 `;
 
-export type FontTypes = 'footer' | 'cookies';
+export type FontTypes = 'footer' | 'cookies' | 'navbar' | 'navbarMobile';
 
 const fonts = {
    footer: setFont(12, 20),
    cookies: setFont(15, 24),
+   navbar: setFont(16, 24),
+   navbarMobile: setFont(28, 36),
 };
 
 export const font = (fontSize: FontTypes | number, lineHeight?: number, fontStyle?: string) =>
@@ -62,6 +64,7 @@ export const colors = {
    overlay: '#000c',
    dark: '#1e1e1e',
    darkGray: '#323232',
+   darkGrayTransparent: '#32323288',
    lightGray: '#505050',
    lighterGray: '#646464',
    gray: '#808080',
@@ -80,6 +83,7 @@ export type ColorType = 'black'
    | 'overlay'
    | 'dark'
    | 'darkGray'
+   | 'darkGrayTransparent'
    | 'lightGray'
    | 'lighterGray'
    | 'gray'
