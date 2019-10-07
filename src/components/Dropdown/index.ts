@@ -1,6 +1,6 @@
-import Dropdown, { DropdownProps } from './Dropdown';
-import DropdownWrapper, { DropdownWrapperProps } from './DropdownWrapper';
+import Dropdown from './Dropdown';
 
 export * from './constants';
-export { DropdownWrapper, DropdownProps, DropdownWrapperProps };
+export * from './DropdownWrapper';
+export * from './Dropdown';
 export default Dropdown;

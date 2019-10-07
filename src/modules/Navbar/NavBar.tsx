@@ -1,14 +1,14 @@
 import React from 'react';
-import { naviLinksArray } from '../../components/data/NaviLink.json';
+import { naviLinksArray as navLinksArray } from '../../components/data/NaviLink.json';
 import Responsive from '../../components/Responsive/Responsive';
 import * as P from './parts';
 import Column from '../../components/Column/Column';
 import Dropdown from '../../components/Dropdown';
 import { ToggleType } from '../../components/Dropdown/Dropdown';
-import Overlay from '../../components/Overlay';
+import { AnimatedOverlay } from '../../components/Overlay';
 
-const fData = naviLinksArray[0];
-const data = naviLinksArray.slice(1);
+const fData = navLinksArray[0];
+const data = navLinksArray.slice(1);
 
 export const Nav: React.FC = () => {
    const links = [
@@ -28,10 +28,10 @@ export const Nav: React.FC = () => {
       </P.ListItem>
    ));
 
-   const dropdownLayout = ({ toggle }: ToggleType) => (
+   const dropdownLayout = ({ toggle, isOpen }: ToggleType) => (
       <>
-         <P.DropdownLayout>{Links}</P.DropdownLayout>
-         <Overlay onClick={toggle} />
+         <P.DropdownLayout isOpen={isOpen}>{Links}</P.DropdownLayout>
+         <AnimatedOverlay isOpen={isOpen} duration={P.duration / 5} onClick={toggle} />
       </>
    );
 
@@ -41,7 +41,10 @@ export const Nav: React.FC = () => {
             <P.NavWrapper>
                {lessThenOrEqualTo('tablet')
                   ? (
-                     <Dropdown trigger={<P.BurgerIconWrapper className="fas fa-align-justify " />}>
+                     <Dropdown
+                        useAnimation
+                        trigger={<P.BurgerIconWrapper className="fas fa-align-justify " />}
+                     >
                         {dropdownLayout}
                      </Dropdown>
                   ) : (

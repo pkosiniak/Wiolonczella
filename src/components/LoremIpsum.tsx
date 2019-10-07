@@ -1,17 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Column from './Column/Column';
 
 const Paragraph = styled.p`
    margin: 24px 0;
 `;
 
-const LoremIpsum: React.FC<{ paragraphs?: number }> = ({ paragraphs = 20 }) => (
-   <div style={{ margin: '24px 0' }}>
-      {Lipsum.slice(0, paragraphs).map((parag) =>
-         (<Paragraph>{parag}</Paragraph>)
-      )}
-   </div>
-);
+const Input = styled.input`
+   max-width: 32px;
+`;
+
+interface LoremIpsumProps {
+   paragraphs?: number;
+   useColumn?: boolean;
+   showOptions?: boolean;
+}
+
+const LoremIpsum: React.FC<LoremIpsumProps> = ({ paragraphs = 20, useColumn = false, showOptions = true }) => {
+   const [column, setColumn] = useState(useColumn);
+   const [numberOfP, setNumberOfP] = useState(paragraphs);
+
+   const onClick = () => setColumn((prevState) => !prevState);
+
+   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => setNumberOfP(+event.target.value)
+
+   const body = (
+      <div style={{ margin: '24px 0' }}>
+         {Lipsum.slice(0, numberOfP).map((paragraf, i) =>
+            (<Paragraph key={i}>{paragraf}</Paragraph>)
+         )}
+      </div>)
+
+   return (
+      <>
+         {showOptions && (
+            <>
+               <button onClick={onClick}>use column</button>
+               <Input
+                  type="number"
+                  value={numberOfP}
+                  max={20}
+                  onChange={onChange}
+               />
+            </>
+         )}
+         {column ? (<Column>{body}</Column>) : body}
+      </>
+   );
+};
 
 export default LoremIpsum;
 

@@ -4,11 +4,18 @@ import { color, mediaTo } from '../../assets/styles';
 export interface LinkProps {
    italic?: boolean;
    ninja?: boolean;
+   inherit?: boolean;
 }
 
 export const Link = styled.a<LinkProps>`
-   ${color('lightGray')};
+   ${({ inherit }) => inherit ? color({ other: 'inherit' }) : color('darkerGrey')};
    ${({ italic = false }) => italic && css`font-style: italic`};
+
+   text-decoration: none;
+
+   ${ mediaTo('tablet')} {
+      text-decoration: underline;
+   }
 
    &:hover {
       text-decoration: underline;
@@ -16,16 +23,14 @@ export const Link = styled.a<LinkProps>`
 
    &:active {
       ${({ ninja = false }) => ninja
-      ? color('lightGray')
+      ? color('darkerGrey')
       : color('gold')
    }
    }
 
    &:visited{
-      ${color('lightGray')};
+      ${color('darkerGrey')};
    }
 
-   ${ mediaTo('tablet')} {
-      text-decoration: underline;
-   }
+
 `;

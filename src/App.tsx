@@ -1,9 +1,9 @@
 import React from 'react';
-import Nav from './components/Navbar/Nav';
-import Main from './components/Main';
-import Footer from './components/Footer/Footer';
-import Cookies from './components/Coockies/Cookies';
-import Header from './components/Header/Header';
+import Nav from './modules/Navbar/NavBar';
+import Main from './modules/Main/Main';
+import Footer from './modules/Footer/Footer';
+import Cookies from './modules/Cookies/Cookies';
+import Header from './modules/Header/Header';
 import './styles/App.scss';
 
 const App: React.FC = () => (

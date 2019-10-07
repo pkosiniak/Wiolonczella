@@ -7,21 +7,25 @@ import { setAlignment } from '../../assets/setAlignment';
 export type ToggleType = ReturnType<(Dropdown['getToggle'])>;
 
 export interface DropdownProps extends C.DropdownComponentProps {
+   useAnimation?: boolean;
    trigger: ReactNode | ((props: ToggleType) => ReactNode);
    children?: ReactNode | ((props: ToggleType) => ReactNode);
 }
 
 export interface DropdownState {
-   isDropdownOpen: boolean;
+   isOpen: boolean;
+   dropdownIn: boolean;
 }
 
 class Dropdown extends React.Component<DropdownProps, DropdownState> {
    state = {
-      isDropdownOpen: false,
+      isOpen: false,
+      dropdownIn: false,
    };
 
    private getToggle = () => ({
       toggle: this.onClick,
+      isOpen: this.state.dropdownIn,
    });
 
    dropdownRef = React.createRef<HTMLDivElement>();
@@ -35,24 +39,32 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
    handleOutsideClick = (event: Event) => {
       if (this.dropdownRef.current
          && !this.dropdownRef.current.contains(event.target as Node)) {
-         this.setState({ isDropdownOpen: false });
+         this.setState({ dropdownIn: false });
+         setTimeout(() => this.setState({ isOpen: false }), P.duration / 5 * 1000 + 1);
          this.removeOutsideClickListener();
       }
    };
 
-   onClick = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen }, () => {
-      if (this.state.isDropdownOpen) {
-         if (this.dropdownRef.current && this.layoutRef.current)
+   onClick = () => {
+      const { isOpen, dropdownIn } = this.state;
+      this.setState({ dropdownIn: !dropdownIn });
+      if (!isOpen) {
+         this.setState({ isOpen: true }, () => {
             setAlignment(this.dropdownRef.current, this.layoutRef.current, this.props.align);
-         document.addEventListener('click', this.handleOutsideClick);
-         document.addEventListener('touchstart', this.handleOutsideClick);
-      } else
+            document.addEventListener('click', this.handleOutsideClick);
+            document.addEventListener('touchstart', this.handleOutsideClick);
+         });
+      }
+      else {
+         setTimeout(() => this.setState({ isOpen: false }), P.duration / 5 * 1000 + 1);
          this.removeOutsideClickListener();
-   });
+      }
+   }
 
    render() {
-      const { className, trigger, children } = this.props;
-      const { isDropdownOpen } = this.state;
+      const { className, trigger, children, useAnimation } = this.props;
+      const { isOpen, dropdownIn } = this.state;
+      const isDropdownOpen = useAnimation ? isOpen : dropdownIn;
 
       const [getTrigger, onTriggerClick] = trigger && isFunction(trigger)
          ? [trigger(this.getToggle()), undefined]
@@ -68,7 +80,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
                {getTrigger}
             </P.TriggerWrapper>
             <P.RelativeWrapper>
-               <P.LayoutWrapper ref={this.layoutRef} isDropdownOpen={isDropdownOpen} >
+               <P.LayoutWrapper ref={this.layoutRef} isOpen={isDropdownOpen} >
                   {getChildren}
                </P.LayoutWrapper>
             </P.RelativeWrapper>

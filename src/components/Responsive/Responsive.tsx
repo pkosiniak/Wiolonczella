@@ -5,11 +5,13 @@ export interface ResponsiveProps {
    children: (
       state: {
          lessThenOrEqualTo: (breakpoint: DeviceType) => boolean;
+         greaterThenOrEqualTo: (breakpoint: DeviceType) => boolean;
          device: IDevice;
          isMobile: boolean;
          isSTablet: boolean;
          isTablet: boolean;
          isDesktop: boolean;
+         isPortrait: boolean;
       }
    ) => React.ReactNode;
 }
@@ -20,6 +22,7 @@ export interface ResponsiveState {
    isSTablet: boolean;
    isTablet: boolean;
    isDesktop: boolean;
+   isPortrait: boolean;
 }
 
 export default class Responsive extends React.Component<ResponsiveProps, ResponsiveState> {
@@ -32,15 +35,18 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
          isSTablet: device.name === Device.sTablet.name,
          isTablet: device.name === Device.tablet.name,
          isDesktop: device.name === Device.desktop.name,
+         isPortrait: window.matchMedia('(orientation: portrait)').matches,
       };
    }
 
    componentDidMount = () => {
       window.addEventListener('resize', this.windowSizeListener);
+      window.addEventListener('orientationchange', this.windowOrientationListener);
    };
 
    componentWillUnmount = () => {
       window.removeEventListener('resize', this.windowSizeListener);
+      window.removeEventListener('orientationchange', this.windowOrientationListener);
    };
 
    windowSizeListener = () => {
@@ -52,6 +58,10 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
          isTablet: device.name === Device.tablet.name,
          isDesktop: device.name === Device.desktop.name,
       });
+   };
+
+   windowOrientationListener = () => {
+      this.setState({ isPortrait: window.matchMedia('(orientation: portrait)').matches });
    };
 
    devicePicker = (width: number): IDevice => {
@@ -92,16 +102,34 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
       }
    };
 
+   greaterThenOrEqualTo = (breakpoint: DeviceType) => {
+      const { isDesktop, isTablet, isSTablet, isMobile } = this.state;
+      switch (breakpoint) {
+         case Device.desktop.name:
+            return isDesktop;
+         case Device.tablet.name:
+            return isTablet || isDesktop;
+         case Device.sTablet.name:
+            return isSTablet || isTablet || isDesktop;
+         case Device.mobile.name:
+            return isMobile || isSTablet || isTablet || isDesktop;
+         default:
+            return false;
+      }
+   };
+
    render() {
-      const { device, isMobile, isSTablet, isTablet, isDesktop } = this.state;
+      const { device, isMobile, isSTablet, isTablet, isDesktop, isPortrait } = this.state;
       return this.props.children(
          {
             lessThenOrEqualTo: this.lessThenOrEqualTo,
+            greaterThenOrEqualTo: this.greaterThenOrEqualTo,
             device,
             isMobile,
             isSTablet,
             isTablet,
-            isDesktop
+            isDesktop,
+            isPortrait,
          },
       );
    }

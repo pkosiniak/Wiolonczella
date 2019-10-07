@@ -4,10 +4,10 @@ import { Icon } from '../StyledIcon/parts';
 
 export const ClickEventInverse = keyframes`
    0% {
-      ${backgroundColor('lightGray')}
+      ${backgroundColor('darkerGrey')}
    }
    100% {
-      ${backgroundColor('gray')}
+      ${backgroundColor('grey')}
    }
 `;
 
@@ -16,7 +16,7 @@ export const AnimatedButton = css`
    cursor: pointer;
 
     &:hover {
-       ${backgroundColor('lightGray')}
+       ${backgroundColor('darkerGrey')}
        & > ${Icon} {
           ${color('gold')}
          }

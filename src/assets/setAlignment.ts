@@ -7,7 +7,7 @@ export enum AlignType {
 
 const isClientRectInvalid = (rect: ClientRect): boolean => !rect.top && !rect.right && !rect.bottom && !rect.left;
 
-export const setAlignment = (trigger: HTMLElement, layout: HTMLElement, align: string | AlignType = AlignType.auto, offset: number = 0) => {
+export const setAlignment = (trigger: HTMLElement | null, layout: HTMLElement | null, align: string | AlignType = AlignType.auto, offset: number = 0) => {
    if (!window || !trigger || !layout) return;
    const triggerRect = trigger.getBoundingClientRect();
    const layoutRect = layout.getBoundingClientRect();
@@ -37,4 +37,11 @@ export const setAlignment = (trigger: HTMLElement, layout: HTMLElement, align: s
             layout.style.right = 'unset';
          }
    }
+};
+
+export const getPosition = (element: HTMLElement | null) => {
+   if (!element) return;
+   const rect = element.getBoundingClientRect();
+   if (isClientRectInvalid(rect)) return;
+   return rect;
 };

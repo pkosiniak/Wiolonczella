@@ -1,20 +1,27 @@
 import styled, { css, keyframes } from 'styled-components';
-import { colors, imgSrc, mediaTo } from '../../assets/styles';
+import {
+   colors,
+   imgSrc,
+   mediaTo,
+   fullWidthWithoutScrollbar,
+   backgroundColor
+} from '../../assets/styles';
 
 export const HeaderWrapper = styled.header`
 	position: relative;
    margin: 0;
    top: 0px;
    left: 0px;
-   width: 100%;
+   ${fullWidthWithoutScrollbar}
    height: 100%;
    text-align: center;
-   background-color: ${colors.dark};
+   /* background-color: ${colors.darker}; */
+   ${backgroundColor('darkest')}
    color: ${colors.white};
 `;
 
 export const HeaderBackgroundImage = styled.div`
-   background-color: ${colors.black};
+   background-color: ${colors.darkest};
    background-image: ${imgSrc};
    background-position: center;
    background-repeat: no-repeat;

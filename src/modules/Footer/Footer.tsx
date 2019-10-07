@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PrivacyPolicy from '../../components/PrivacyPolicy';
+import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy';
 import { FooterData } from '../../components/data/Body.json';
 import * as P from './parts';
 import { Link } from '../../components/Link/Link';

@@ -8,7 +8,7 @@ export interface Rectangle {
 
 export const Icon = styled.i<Rectangle>`
    ${backgroundColor('transparent')}
-   ${color('lighterGray')}
+   ${color('darkGrey')}
    ${({ width, height = 32 }) => css`
       font-size: ${height}px;
       ${width && `width: ${width}px`};

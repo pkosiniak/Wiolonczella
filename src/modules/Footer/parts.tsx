@@ -9,7 +9,7 @@ export const StyledFooter = styled.footer`
 `;
 
 export const FooterLinks = styled.a`
-   ${color('lightGray')}
+   ${color('darkerGrey')}
 
    ${mediaMaxWidth('tablet', css`
       text-decoration: underline;
@@ -31,5 +31,5 @@ export const FooterPolicy = styled.div`
 export const FooterCreatedInfo = styled.p`
    margin: 10px 0;
    font-style: italic;
-   ${color('lightGray')};
+   ${color('darkerGrey')};
 `;

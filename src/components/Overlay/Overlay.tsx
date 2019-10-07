@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { backgroundColor } from '../../assets/styles';
 
 export enum OverlayLevel {
@@ -15,4 +15,36 @@ export const Overlay = styled.div<{ level?: OverlayLevel }>`
    width: 100vw;
    height: 100vh;
    ${backgroundColor('overlay')}
+`;
+
+const OverlayOpen = keyframes`
+   0% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
+`;
+
+const OverlayClose = keyframes`
+   0% {
+      opacity: 1;
+   }
+   100% {
+      opacity: 0;
+   }
+`;
+
+interface AnimatedOverlay {
+   duration: number;
+   isOpen: boolean;
+}
+
+export const AnimatedOverlay = styled(Overlay)<AnimatedOverlay>`
+   animation: ${({ isOpen }) => isOpen
+      ? OverlayOpen
+      : OverlayClose
+   } forwards;
+   animation-duration: ${({duration}) => duration}s;
+   animation-timing-function: ${({ isOpen }) => isOpen ? 'ease-out' : 'ease-in'}
 `;
