@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import * as P from './parts';
 import { isFunction } from '../../assets/parse';
 import { getPosition } from '../../assets/setAlignment';
+import { Icons } from '../../assets/constants';
 
 export type ToggleType = ReturnType<(Expandable['getToggle'])>;
 
@@ -67,10 +68,11 @@ class Expandable extends React.Component<ExpandableProps, ExpandableState> {
             )}
             {showArrow && (
                <P.ToggleArrow
+                  noPadding
                   firstOpen={prevIsFirst}
                   isOpen={isOpen}
-                  className="fas fa-angle-up"
-                  rectangle={{ height: arrowSize }}
+                  icon={Icons.arrowUp}
+                  square={arrowSize}
                />
             )}
          </P.ToggleWrapper>

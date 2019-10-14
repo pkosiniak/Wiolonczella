@@ -1,14 +1,19 @@
-import React from 'react';
-import StyledIcon, { StyledIconProps } from '../StyledIcon/StyledIcon';
+import React, { ReactNode } from 'react';
+import Icon, { IconProps, setHeightWithPadding, setWidthWithPadding } from '../Icon/Icon';
 import * as P from './parts';
 
 export interface IconButtonProps {
    onClick?: () => void;
+   icon: ReactNode;
 }
 
-const IconButton: React.FC<IconButtonProps & StyledIconProps> = ({ className, id, onClick, rectangle, square }) => (
-   <P.Button onClick={onClick}>
-      <StyledIcon className={className} id={id} rectangle={rectangle} square={square} />
+const IconButton: React.FC<IconButtonProps & IconProps> = ({ square, rectangle, onClick, ...props }) => (
+   <P.Button
+      height={setHeightWithPadding(square, rectangle)}
+      width={setWidthWithPadding(square, rectangle)}
+      onClick={onClick}
+   >
+      <Icon square={square} rectangle={rectangle} {...props} />
    </P.Button>
 );
 

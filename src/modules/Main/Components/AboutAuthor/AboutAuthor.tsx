@@ -2,20 +2,18 @@ import React from 'react';
 import { AboutAuthorData } from '../../../../components/Main.components/data/Main.content';
 import { naviLinks as navLinks } from '../../../../components/data/NaviLink.json';
 import styled from 'styled-components';
-import { mediaTo } from '../../../../assets/styles';
+import { mediaTo, font } from '../../../../assets/styles';
+import Styled from '../../../../components/Styles';
 
 const lData = navLinks.AboutAuthor;
 const data = AboutAuthorData;
 
-const Wrapper = styled.section``;
-
-const H3 = styled.h3``;
-
-const Paragraph = styled.p`
+const Wrapper = Styled.section;
+const H3 = Styled.h3;
+const P = styled(Styled.p)`
    letter-spacing: 1px;
-   margin: 10px 0;
    ${mediaTo('sTablet')} {
-      line-height: 26px;
+      ${font('aboutAuthorMobile')}
    }
 `;
 
@@ -23,7 +21,7 @@ const AboutAuthor: React.FC = () => (
    <Wrapper>
       <H3 id={lData.address}>{data.Header}</H3>
       {data.Paragraphs.map((paragraph, i) => (
-         <Paragraph key={i}>{paragraph}</Paragraph>
+         <P key={i}>{paragraph}</P>
       ))}
    </Wrapper>
 );

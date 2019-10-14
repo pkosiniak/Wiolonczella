@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { mediaTo } from '../assets/styles';
+import { mediaTo, backgroundColor } from '../assets/styles';
 
 interface StyledButtonGroupProps { top?: number; bottom?: number; }
 
@@ -32,6 +32,11 @@ interface StyledShowButtonProps {
    isHeader?: boolean;
    isAll?: boolean;
 }
+
+export const Body = styled.div<{backColor: boolean}>`
+   ${({backColor}) => backgroundColor(backColor ? 'white' : 'transparent', true)};
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+`;
 
 export const StyledShowButton = styled.button<StyledShowButtonProps>`
    position: ${({ top, bottom }) => top || bottom ? 'fixed' : 'static'};
@@ -83,8 +88,4 @@ export const StyledShowButton = styled.button<StyledShowButtonProps>`
       }`
    };
    z-index: 10000;
-`;
-
-export const Body = styled.div`
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 `;

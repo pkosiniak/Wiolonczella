@@ -1,11 +1,22 @@
 import styled, { css } from 'styled-components';
 import { font, color, mediaMaxWidth } from '../../assets/styles';
 
+const textStyle = css`
+   text-align: center;
+   ${font('footer')};
+`;
+
 export const StyledFooter = styled.footer`
    margin-top: 60px;
    padding-bottom: 20px;
-   text-align: center;
-   ${font('footer')};
+`;
+
+export const TextWrapper = styled.div`
+   ${textStyle}
+`;
+
+export const LinkWrapper = styled.span`
+   display: inline-block;
 `;
 
 export const FooterLinks = styled.a`
@@ -26,9 +37,10 @@ export const FooterLinks = styled.a`
 
 export const FooterPolicy = styled.div`
    margin-bottom: 30px;
+   ${textStyle}
 `;
 
-export const FooterCreatedInfo = styled.p`
+export const P = styled.p`
    margin: 10px 0;
    font-style: italic;
    ${color('darkerGrey')};

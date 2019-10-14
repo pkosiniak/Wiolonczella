@@ -23,6 +23,7 @@
    }],
    "tslint.configFile": "./tslint.json",
    "cSpell.words": [
+      "Checkmark",
       "Unmount",
       "scrollbar"
    ],

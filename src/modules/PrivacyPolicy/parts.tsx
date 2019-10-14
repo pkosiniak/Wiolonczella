@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { backgroundColor, color, mediaTo, colors } from '../../assets/styles';
+import { backgroundColor, color, mediaTo, colors, font } from '../../assets/styles';
+import Styled from '../../components/Styles';
 
 const wrapperPadding = 24;
 
@@ -75,29 +76,25 @@ export const BodyWrapper = styled.article<OverflowProps>`
    ${OverflowWrapper}
 `;
 
-export const H3 = styled.h3`
-   margin-left: 24px;
+export const H3 = styled(Styled.h3)`
+   ${color('darkest')};
    ${mediaTo('sTablet')} {
-      margin-left: 16px;
+      margin: 44px 0 32px;
    }
    ${mediaTo('mobile')} {
-      margin-left: 8px;
+      margin: 40px 0 28px;
    }
 `;
 
-export const H4 = styled.h4`
-   /* FIXME: remove after old-style dispose */
-   padding-left: 0;
-   margin: 40px 0 28px 24px;
+export const H4 = styled(Styled.h4)`
    ${mediaTo('sTablet')} {
-      margin-left: 16px;
+      margin: 36px 0 28px;
    }
    ${mediaTo('mobile')} {
-      margin-left: 8px;
+      margin: 32px 0 24px;
    }
 `;
 
-export const Paragraph = styled.p<{ hasInline?: boolean }>`
-   ${({ hasInline }) => hasInline && 'display: inline;'}
-   margin: 16px 0;
+export const P = styled(Styled.p)`
+   ${font('policyParagraph')}
 `;

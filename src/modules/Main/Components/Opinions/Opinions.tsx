@@ -2,36 +2,38 @@ import * as React from 'react';
 import { opinions } from '../../../../components/Main.components/data/Opinions.content.json';
 import { naviLinks } from '../../../../components/data/NaviLink.json';
 import { OpinionData } from '../../../../components/Main.components/data/Main.content';
-// import './styles/Opinions.scss';
 import styled from 'styled-components';
-import { font } from '../../../../assets/styles';
+import { font, color } from '../../../../assets/styles';
+import Styled from '../../../../components/Styles';
 
 const oData = opinions;
 const lData = naviLinks.Opinins;
 const data = OpinionData;
 
-const Wrapper = styled.section``;
-const H3 = styled.h3``;
-const H4 = styled.h4`
-   padding-left: 16px;
+const Wrapper = Styled.section;
+const H3 = Styled.h3;
+const H4 = styled(Styled.h4)`
+   margin-bottom: 0;
 `;
-const H5 = styled.h5`
-   padding-left: 32px;
+const H5 = styled(Styled.h5)`
+   margin-top: 0;
 `;
-const Article = styled.article``;
-// const Header = styled.header``;
-const OpinionText = styled.p`
-   ${font('opinions')}
+const Article = styled.article`
+   & > ${Styled.p} {
+      ${color('darker')}
+      ${font('opinions')}
+   }
 `;
+const P = Styled.p;
 
 const Opinions: React.FC = () => {
 
    const Lines = (lines: string[]) =>
       (
          lines.map((line, i) => (
-            <OpinionText key={'l' + i}>
+            <P key={'l' + i}>
                {line}
-            </OpinionText>
+            </P>
          ))
       );
 
@@ -45,8 +47,8 @@ const Opinions: React.FC = () => {
                {Lines(opinion.lines)}
             </Article>
          ))}
-      </Wrapper >
+      </Wrapper>
    );
-}
+};
 
 export default Opinions;

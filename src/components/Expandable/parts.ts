@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import StyledIcon from '../StyledIcon/StyledIcon';
+import Icon from '../Icon/Icon';
 import { font as Font, backgroundColor, colors } from '../../assets/styles';
 import { isFirefox } from '../../assets/browsers';
 
@@ -87,9 +87,9 @@ interface ToggleProps {
    firstOpen: boolean;
 }
 
-export const ToggleArrow = styled(StyledIcon) <ToggleProps>`
+export const ToggleArrow = styled(Icon)<ToggleProps>`
    margin-left: 8px;
-   padding: 0;
+   padding: 0 !important;
    transform: rotate(180deg);
    transform-origin: center;
    ${AnimationStyle};

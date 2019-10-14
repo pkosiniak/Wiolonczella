@@ -1,17 +1,60 @@
-import styled, { css } from 'styled-components';
+import React, { useEffect, useState, AnchorHTMLAttributes, forwardRef } from 'react';
+import styled from 'styled-components';
 import { color, mediaTo } from '../../assets/styles';
 
-export interface LinkProps {
+export interface StyleLinkProps {
    italic?: boolean;
-   ninja?: boolean;
-   inherit?: boolean;
+   ninjaActive?: boolean;
+   colorInherit?: boolean;
+   underlineTouchOnly?: boolean;
 }
 
-export const Link = styled.a<LinkProps>`
-   ${({ inherit }) => inherit ? color({ other: 'inherit' }) : color('darkerGrey')};
-   ${({ italic = false }) => italic && css`font-style: italic`};
+export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+   to?: string;
+   onClick?: (event: any) => void;
+}
 
-   text-decoration: none;
+type LinkType = LinkProps & StyleLinkProps;
+
+const Link = forwardRef<HTMLAnchorElement, LinkType>(({
+   underlineTouchOnly = true,
+   italic,
+   ninjaActive,
+   colorInherit,
+   children,
+   ...props
+},                                                    ref) => {
+   const [isTouchScreen, setIsTouchScreen] = useState(false);
+   useEffect(() => {
+      try {
+         if (document.createEvent('TouchEvent')) setIsTouchScreen(true);
+      } catch (error) {
+         setIsTouchScreen(!underlineTouchOnly);
+         // tslint:disable-next-line: no-console
+         if (process.env.NODE_ENV === 'development') console.warn('error', (error as Error).name);
+      }
+   }, [underlineTouchOnly]);
+
+   return (
+      <StyledLink
+         ref={ref}
+         underlineTouchOnly={isTouchScreen}
+         colorInherit={colorInherit}
+         italic={italic}
+         ninjaActive={ninjaActive}
+         {...props}
+      >
+         {children}
+      </StyledLink>
+   );
+});
+
+export const StyledLink = styled.a<StyleLinkProps>`
+   ${({ colorInherit: inherit }) => inherit ? color({ other: 'inherit' }) : color('darkerGrey')};
+   ${({ italic = false }) => italic && 'font-style: italic'};
+
+   cursor: pointer;
+   text-decoration: ${({ underlineTouchOnly }) => underlineTouchOnly ? 'underline' : 'none'};
 
    ${ mediaTo('tablet')} {
       text-decoration: underline;
@@ -22,15 +65,12 @@ export const Link = styled.a<LinkProps>`
    }
 
    &:active {
-      ${({ ninja = false }) => ninja
-      ? color('darkerGrey')
-      : color('gold')
-   }
+      ${({ ninjaActive: ninja = false }) => ninja ? color('darkerGrey') : color('gold')}
    }
 
-   &:visited{
+   &:visited {
       ${color('darkerGrey')};
    }
-
-
 `;
+
+export default Link;

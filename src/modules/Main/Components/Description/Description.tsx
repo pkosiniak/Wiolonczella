@@ -4,32 +4,26 @@ import { naviLinks } from '../../../../components/data/NaviLink.json';
 // import './styles/Description.scss';
 // import './styles/Main.Components.scss';
 import styled from 'styled-components';
-import { mediaTo, font } from '../../../../assets/styles';
+import { font } from '../../../../assets/styles';
+import Styled from '../../../../components/Styles';
 
 const lData = naviLinks.Description;
 const data = DescriptionData;
 
-const Wrapper = styled.section``;
+const Wrapper = Styled.section;
 const InnerWrapper = styled.div`
-   ${font('description')};
+   ${font('paragraph')};
    font-family: Helvetica,Arial,sans-serif;
 `;
-const H3 = styled.h3``;
-const Paragraph = styled.p`
-   margin: 10px;
-   text-align: justify;
-   ${mediaTo('sTablet')} {
-      margin-left: 0px;
-      text-align: left;
-   }
-`;
-const Ul = styled.ul``;
-const Li = styled.li``;
+const H3 = Styled.h3;
+const P = Styled.p;
+const Ul = Styled.ul;
+const Li = Styled.li;
 
 const Description: React.FC = () => {
    const Paragraphs = (paragraphs: string[], key: string) =>
       paragraphs.map((paragraph, i) => (
-         <Paragraph key={i + key}>{paragraph}</Paragraph>
+         <P key={i + key}>{paragraph}</P>
       ));
 
    return (

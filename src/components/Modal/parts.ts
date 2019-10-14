@@ -58,4 +58,6 @@ export const LayoutWrapper = styled.div<LayoutWrapperProps>`
    }
 `;
 
-export const Trigger = styled.div``;
+export const Trigger = styled.div`
+   /* display: inline-block; */
+`;

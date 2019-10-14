@@ -1,57 +1,117 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CookiesData } from '../../components/data/Body.json';
-// import './Cookies.scss';
+import { naviLinks } from '../../components/data/NaviLink.json';
 import * as P from './parts';
-import { Link } from '../../components/Link/Link';
+import Link from '../../components/Link/Link';
+import { Icons } from '../../assets/constants';
+import { getPosition } from '../../assets/setAlignment';
 
+const navData = naviLinks.home;
 const data = CookiesData;
 
-const Cookies: React.FC = () => {
-   const [hide, setHide] = useState<boolean>(false);
-   const [isShown, setIsShown] = useState<boolean>(true);
+interface CookiesProps {
+   policyRef?: React.RefObject<HTMLElement>;
+}
 
-   const onClick = () => {
-      setHide(true);
-      setTimeout(() => setIsShown(false), 999);
+interface CookiesState {
+   hide: boolean;
+   isShown: boolean;
+   bannerHeight: number;
+}
 
-      const homeUpButton = document.getElementById('homeUpArrow');
-      if (homeUpButton === null) return;
-      homeUpButton.setAttribute('style', 'bottom:25px');
+class Cookies extends React.Component<CookiesProps, CookiesState> {
+   state = {
+      hide: false,
+      isShown: true,
+      bannerHeight: 0,
    };
 
-   const OnClickHandler = () => {
-      const handler = document.getElementById('showPrivacyPolicy');
-      if (handler !== null)
-         handler.click();
+   componentDidMount() {
+      document.addEventListener('resize', this.resizeWorker);
+      this.resizeWorker();
+   }
+
+   componentWillUnmount() {
+      this.removeResizeWorker();
+   }
+
+   bannerRef = React.createRef<HTMLDivElement>();
+
+   resizeWorker = () => {
+      const position = getPosition(this.bannerRef.current);
+      if (!position || position.height === this.state.bannerHeight) return;
+      this.setState({ bannerHeight: position.height });
    };
 
-   return isShown
-      ? (
-         <P.CookiesBanner id="cookiesBanerBottom" hide={hide} isShown={isShown}>
+   removeResizeWorker = () => document.removeEventListener('resize', this.resizeWorker);
+
+   onClick = () => {
+      this.setState({ hide: true });
+      setTimeout(
+         () => this.setState({ isShown: false }, () => this.removeResizeWorker()),
+         P.duration - 1
+      );
+   };
+
+   // TODO: fix here button pos right
+   onClickPolicyRef = (event: MouseEvent) => {
+      event.preventDefault();
+      const ref = this.props.policyRef;
+      if (!ref || !ref.current) return;
+      ref.current.click();
+   };
+
+   Banner = () => {
+      const { isShown, hide } = this.state;
+      return isShown && (
+         <P.CookiesBanner
+            ref={this.bannerRef}
+            id="cookiesBaner"
+            hide={hide}
+            isShown={isShown}
+         >
             <P.StyledColumn>
                <P.CookieGroup>
-                  <P.CookieIcon className="fas fa-cookie-bite" id="cookieIcon" />
-                  <P.CookieText className="cookieText">
+                  <P.CookieIcon
+                     icon={Icons.cookies}
+                     id="cookieIcon"
+                     square={48}
+                  />
+                  <P.CookieText>
                      {data.Text1}
-                     <Link href="#privacyPolicy" onClick={OnClickHandler} >
+                     <Link
+                        to="#privacyPolicy"
+                        onClick={this.onClickPolicyRef}
+                     >
                         {data.Link}
                      </Link>
                      {data.Text2}
                   </P.CookieText>
                </P.CookieGroup>
                <P.StyledIconButton
-                  className={'far fa-times-circle'}
-                  // id={'closingCoockiesButtonIcon'}
-                  onClick={onClick}
+                  icon={Icons.close}
+                  onClick={this.onClick}
                />
             </P.StyledColumn>
          </P.CookiesBanner>
-      )
-      : <></>;
-};
+      );
+   };
+
+   render() {
+      const { bannerHeight, hide } = this.state;
+      return (
+         <>
+            <P.HomeButton
+               href={navData.hashAddress}
+               square={48}
+               icon={Icons.arrowUp}
+               height={bannerHeight}
+               hide={hide}
+            />
+            {this.Banner()}
+         </>
+      );
+   }
+}
 
 export default Cookies;
-
-// <button className=" closingButton" id="closingCoockiesButton">
-//                <i className="far fa-times-circle animatedButton" id="closingCoockiesButtonIcon" />
-//             </button>

@@ -1,50 +1,50 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import * as QuickOverviewData from '../../../../components/Main.components/data/Main.content';
 import { naviLinks } from '../../../../components/data/NaviLink.json';
-// import './styles/QuickOverview.scss';
-// import './styles/Main.Components.scss';
 import styled from 'styled-components';
-import { mediaTo } from '../../../../assets/styles';
+import { mediaTo, mediaFrom } from '../../../../assets/styles';
+import Styled from '../../../../components/Styles';
 
 const lData = naviLinks.QuickOverview;
 const data = QuickOverviewData.QuickOverviewData;
 
-const Wrapper = styled.section``;
-const H3 = styled.h3``;
-const H4 = styled.h4``;
-const Ul = styled.ul``;
-const Li = styled.li``;
-const InnerWrapper = styled.div``;
-const Image = styled.img``;
-
-// TODO: Description!!
-const Paragraph = styled.p`
-   margin: 10px;
-   text-align: justify;
-   ${mediaTo('sTablet')} {
-      margin-left: 0px;
-      text-align: left;
+const Wrapper = Styled.section;
+const H3 = Styled.h3;
+const H4 = Styled.h4;
+const Ul = Styled.ul;
+const Li = Styled.li;
+const P = Styled.p;
+const Image = styled.img`
+   width: 60%;
+   ${mediaTo('mobile')}{
+      width: 80%;
+   }
+   ${mediaFrom(2000)} {
+      width: 40%;
    }
 `;
 
 const QuickOverview: React.FC = () => (
-   <>
-      <Wrapper id={lData.address}>
+   <Wrapper id={lData.address}>
+      <H3>
          {data.Header.map((headers, i) => (
-            <H3 key={'h3' + i}>{headers}</H3>
+            <Fragment key={i}>
+               {headers}
+               <br />
+            </Fragment>
          ))}
-         {data.Paragraphs.map((lines, i) => (
-            <Paragraph key={'p' + i}>{lines}</Paragraph>
+      </H3>
+      {data.Paragraphs.map((lines, i) => (
+         <P key={'p' + i}>{lines}</P>
+      ))}
+      <H4>{data.Header2}</H4>
+      <Ul>
+         {data.List.map((listItem) => (
+            <Li key={'liL' + listItem}>{listItem}</Li>
          ))}
-         <H4>{data.Header2}</H4>
-         <Ul>
-            {data.List.map((listItem) => (
-               <Li key={'liL' + listItem}>{listItem}</Li>
-            ))}
-         </Ul>
-      </Wrapper>
+      </Ul>
       <Image src={data.Image.srcUrl} alt="" />
-   </>
+   </Wrapper>
 );
 
 export default QuickOverview;

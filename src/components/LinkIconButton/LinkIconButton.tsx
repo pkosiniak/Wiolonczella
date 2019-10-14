@@ -1,21 +1,23 @@
 import React from 'react';
 import IconButton from '../IconButton/IconButton';
-import { StyledIconProps } from '../StyledIcon/StyledIcon.jsx';
+import { IconProps, IconType } from '../Icon/Icon';
 
 export interface LinkButtonProps {
    href: string;
-   iconClassName: string;
+   iconClassName?: string;
    className?: string;
    id?: string;
+   icon: IconType;
 }
 
-const LinkIconButton: React.FC<LinkButtonProps & Partial<StyledIconProps>> = ({
+const LinkIconButton: React.FC<LinkButtonProps & Partial<IconProps>> = ({
    href,
    className,
    iconClassName,
    id,
    rectangle,
-   square
+   square,
+   icon
 }) => (
       <a href={href} className={className}>
          <IconButton
@@ -23,6 +25,7 @@ const LinkIconButton: React.FC<LinkButtonProps & Partial<StyledIconProps>> = ({
             id={id}
             rectangle={rectangle}
             square={square}
+            icon={icon}
          />
       </a>
    );

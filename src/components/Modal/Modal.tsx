@@ -3,8 +3,7 @@ import Responsive from '../Responsive/Responsive';
 import * as P from './parts';
 import { OverlayLevel, AnimatedOverlay } from '../Overlay';
 import { isFunction } from '../../assets/parse';
-import { hideScrollbar, windowResizeListenerWorker } from '../../assets/helpers';
-import { Device } from '../../assets/styles';
+import { windowResizeListenerWorker, delayedHideScrollbar } from '../../assets/helpers';
 
 export type ToggleType = ReturnType<(Modal['getToggle'])>;
 
@@ -18,14 +17,12 @@ interface ModalProps {
 interface ModalState {
    isOpen: boolean;
    modalIn: boolean;
-   isOnMobile: boolean;
 }
 
 class Modal extends React.Component<ModalProps, ModalState> {
    state = {
       isOpen: false,
       modalIn: false,
-      isOnMobile: window.innerWidth < Device.mobile.width,
    };
 
    layoutRef = React.createRef<HTMLDivElement>();
@@ -37,21 +34,23 @@ class Modal extends React.Component<ModalProps, ModalState> {
 
    onClick = () => {
       const { isOpen, modalIn } = this.state;
+      const timeout = P.duration * 1000;
       this.setState({ modalIn: !modalIn });
       if (!isOpen) {
-         this.setState({ isOpen: !isOpen }, () => { hideScrollbar(this.state.isOpen); });
+         this.setState({ isOpen: true }, () => {
+            delayedHideScrollbar(true, timeout * 0.925);
+         });
          window.addEventListener('resize', windowResizeListenerWorker);
       } else {
-         setTimeout(() => this.setState({ isOpen: !isOpen },
-            () => { hideScrollbar(this.state.isOpen); }),
-            P.duration * 1000 + 1);
+         delayedHideScrollbar(false, timeout * 0.075);
+         setTimeout(() => this.setState({ isOpen: false }), timeout + 1);
          window.removeEventListener('resize', windowResizeListenerWorker);
       }
    };
 
    render() {
       const { className, useColumn, trigger, children } = this.props;
-      const { isOpen, modalIn, isOnMobile } = this.state;
+      const { isOpen, modalIn } = this.state;
 
       const [getTrigger, onTriggerClick] = trigger && isFunction(trigger)
          ? [trigger(this.getToggle()), undefined]
@@ -65,11 +64,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
          <>
             <P.Trigger onClick={onTriggerClick}>{getTrigger}</P.Trigger>
             <Responsive>
-               {({ isMobile }) => {
-                  if (isMobile !== isOnMobile) {
-                     this.setState({ isOnMobile: isMobile });
-                  }
-                  return isOpen && (
+               {({ isMobile }) => isOpen && (
                      <>
                         <P.LayoutWrapper
                            ref={this.layoutRef}
@@ -86,8 +81,7 @@ class Modal extends React.Component<ModalProps, ModalState> {
                            isOpen={modalIn}
                         />}
                      </>
-                  );
-               }}
+                  )}
             </Responsive>
          </>
       );

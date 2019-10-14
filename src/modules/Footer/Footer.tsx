@@ -1,55 +1,69 @@
-import * as React from 'react';
+import React from 'react';
 import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy';
 import { FooterData } from '../../components/data/Body.json';
 import * as P from './parts';
-import { Link } from '../../components/Link/Link';
+import Link from '../../components/Link/Link';
+import { ToggleType } from '../../components/Modal/Modal';
 
 const data = FooterData;
 
-interface IState {
+interface FooterProps {
+   policyRef: React.RefObject<HTMLSpanElement>;
+}
+
+interface FooterState {
    showPolicy: boolean;
 }
 
-export default class Footer extends React.Component<{}, IState> {
+class Footer extends React.Component<FooterProps, FooterState> {
    state = {
       showPolicy: false
    };
 
-   OnClickHandler = () => {
+   onClickHandler = () => {
       this.setState({ showPolicy: true });
-
-      const element = document.getElementById('privacyPolicy'); // TODO: rethink this
-      if (element !== null)
-         element.style.display = 'block';
    };
 
    CreatedBy = () => (
       <>
          {data.created.CreatedBy}
-         <Link ninja href={data.created.LinkRef} /*id="githubLink"*/ rel="noopener noreferrer" target="_blank" >
+         <Link
+            ninjaActive
+            href={data.created.LinkRef}
+            /*id="githubLink"*/
+            rel="noopener noreferrer"
+            target="_blank"
+         >
             {data.created.LinkName}
          </Link>
       </>
    );
 
    render() {
+      const { policyRef } = this.props;
       return (
-         <>
-            <input type="hidden" id="showPrivacyPolicy" onClick={this.OnClickHandler} />
-            {this.state.showPolicy && <PrivacyPolicy />}
-            <P.StyledFooter>
-               <P.FooterPolicy>
-                  {data.links.map((link, i) => (
-                     <Link key={i} href="#privacyPolicy" /* id="showPrivacyPolicy" */ onClick={this.OnClickHandler}>
-                        {link}
-                     </Link>
-                  ))}
-               </P.FooterPolicy>
+         <P.StyledFooter>
+            <PrivacyPolicy >
+               {({ toggle }: ToggleType) =>
+                  <P.FooterPolicy id="pp" >
+                     <P.LinkWrapper onClick={toggle} ref={policyRef}>
+                        <Link
+                           to="#privacyPolicy"
+                           onClick={this.onClickHandler}
+                        >
+                           {data.links[0]}
+                        </Link>
+                     </P.LinkWrapper>
+                  </P.FooterPolicy>}
+            </PrivacyPolicy>
+            <P.TextWrapper>
                {[data.created.Version, this.CreatedBy(), data.created.Year].map((item, i) => (
-                  <P.FooterCreatedInfo key={i}>{item}</P.FooterCreatedInfo>
+                  <P.P key={i}>{item}</P.P>
                ))}
-            </P.StyledFooter>
-         </>
+            </P.TextWrapper>
+         </P.StyledFooter>
       );
    }
 }
+
+export default Footer;

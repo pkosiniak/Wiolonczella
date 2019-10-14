@@ -21,6 +21,7 @@ interface DemosState {
    showModules: boolean[];
    useColumn: boolean;
    showAllButtons: boolean;
+   useBackColor: boolean;
 }
 
 class Playground extends React.Component<{}, DemosState> {
@@ -38,6 +39,7 @@ class Playground extends React.Component<{}, DemosState> {
       });
       const useColumnState = localStorage.getItem('useColumn');
       const showAllButtonsState = localStorage.getItem('showAllButtons');
+      const useBackColorState = localStorage.getItem('useBackColor');
       this.state = {
          showComponents: Components.map((demo, i) => {
             const key = demo.key ? demo.key.toString() : 'Components' + i;
@@ -47,8 +49,9 @@ class Playground extends React.Component<{}, DemosState> {
             const key = demo.key ? demo.key.toString() : 'Modules' + i;
             return parseBool(localStorage.getItem(key));
          }),
-         useColumn: useColumnState ? parseBool(useColumnState) : true,
+         useColumn: useColumnState ? parseBool(useColumnState) : false,
          showAllButtons: showAllButtonsState ? parseBool(showAllButtonsState) : true,
+         useBackColor: useBackColorState ? parseBool(useBackColorState) : true,
       };
    }
 
@@ -58,8 +61,13 @@ class Playground extends React.Component<{}, DemosState> {
    };
 
    onShowOptionsButtonsClick = () => {
-      this.setState({ showAllButtons: !this.state.showAllButtons })
+      this.setState({ showAllButtons: !this.state.showAllButtons });
       localStorage.setItem('showAllButtons', (!this.state.showAllButtons).toString());
+   };
+
+   onBackgroundButtonClick = () => {
+      this.setState({ useBackColor: !this.state.useBackColor });
+      localStorage.setItem('useBackColor', (!this.state.useBackColor).toString());
    };
 
    calcLength = (arr: boolean[]) => {
@@ -72,21 +80,41 @@ class Playground extends React.Component<{}, DemosState> {
    setShowModules = (state: boolean[]) => this.setState({ showModules: state });
 
    render() {
-      const { showComponents, showModules, useColumn, showAllButtons } = this.state;
-
+      const { showComponents, showModules, useColumn, showAllButtons, useBackColor } = this.state;
       const getDemos = Components.map((demo, i) => <MemoDemoComponent key={i} demoElement={demo} showDemo={showComponents[i]} />);
       const getModules = Modules.map((demo, i) => <MemoDemoComponent key={i} demoElement={demo} showDemo={showModules[i]} />);
-
       return (
-         <P.Body>
+         <P.Body backColor={!useBackColor} id="playground">
             {showAllButtons && (
                <P.StyledDemoButtonGroup top={0} >
                   <ShowButtonGroup demos={Modules} name="Modules" showDemos={showModules} setShowDemos={this.setShowModules} />
                   <ShowButtonGroup demos={Components} name="Components" showDemos={showComponents} setShowDemos={this.setShowComponents} />
                </P.StyledDemoButtonGroup>
             )}
-            <P.StyledShowButton noWidth bottom={1} isActive={showAllButtons} onClick={this.onShowOptionsButtonsClick}>@</P.StyledShowButton>
-            {showAllButtons && <P.StyledShowButton bottom={12} isActive={useColumn} onClick={this.onColumnButtonClick}>Column</P.StyledShowButton>}
+            <P.StyledShowButton
+               noWidth
+               bottom={1}
+               isActive={showAllButtons}
+               onClick={this.onShowOptionsButtonsClick}
+            >
+               @
+            </P.StyledShowButton>
+            {showAllButtons &&
+               <P.StyledShowButton
+                  bottom={12}
+                  isActive={useColumn}
+                  onClick={this.onColumnButtonClick}
+               >
+                  Column
+               </P.StyledShowButton>}
+            {showAllButtons &&
+               <P.StyledShowButton
+                  bottom={24}
+                  isActive={useBackColor}
+                  onClick={this.onBackgroundButtonClick}
+               >
+                  {!useBackColor ? 'BG: White' : 'BG: Grey'}
+               </P.StyledShowButton>}
             {useColumn
                ? (
                   <Column>

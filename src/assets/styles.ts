@@ -1,6 +1,7 @@
 import Image from '../image/backgroundBaner_wv.jpg';
 import { FlattenSimpleInterpolation, css, FlattenInterpolation, ThemeProps } from 'styled-components';
 import { scrollbarWidth } from './helpers';
+import { typeOrUndefined, isValid } from './parse';
 
 export const imgSrc = () => `url(${Image})`;
 
@@ -43,30 +44,78 @@ export const mediaFrom = (width: number | DeviceType) => `
    @media (min-width: ${typeof width === 'number' ? width : Width[width]}px)
 `;
 
-export const setFont = (size: number, lineHeight?: number, fontStyle?: string) => css`
-   font-size: ${size}px;
-   ${lineHeight && css`line-height: ${lineHeight}px;`}
-   ${fontStyle && css`font-style:${fontStyle};`}
-`;
+// FONTS
+export type FontTypes = 'footer'
+   | 'cookies'
+   | 'navbar'
+   | 'navbarMobile'
+   | 'paragraph'
+   | 'aboutAuthorMobile'
+   | 'opinions'
+   | 'downloadLabel'
+   | 'downloadRodoLabel'
+   | 'policyParagraph'
+   | 'h3'
+   | 'h4'
+   | 'h5';
 
-export type FontTypes = 'footer' | 'cookies' | 'navbar' | 'navbarMobile' | 'description' | 'opinions';
-
-type IFonts = { [key in FontTypes]: FlattenSimpleInterpolation };
+type IFonts = { [key in FontTypes]: number[] };
 
 const fonts: IFonts = {
-   footer: setFont(12, 20),
-   cookies: setFont(15, 24),
-   navbar: setFont(16, 24),
-   navbarMobile: setFont(28, 36),
-   description: setFont(18, 30),
-   opinions: setFont(15, 24),
+   footer: [12, 20],
+   cookies: [15, 24],
+   navbar: [16, 24],
+   navbarMobile: [28, 36],
+   paragraph: [18, 30],
+   aboutAuthorMobile: [16, 28],
+   opinions: [15, 24],
+   downloadLabel: [12, 30],
+   downloadRodoLabel: [16, 28],
+   policyParagraph: [16, 24],
+   h3: [26, 38],
+   h4: [22, 28],
+   h5: [14, 28],
 };
 
-export const font = (fontSize: FontTypes | number, lineHeight?: number, fontStyle?: string) =>
-   typeof fontSize === 'number'
-      ? setFont(fontSize, lineHeight, fontStyle)
-      : fonts[fontSize];
+interface IFont {
+   lineHeight?: number;
+   style?: string;
+   weight?: string | number;
+}
 
+export const setFont = (size: number, props?: IFont) => {
+   const fontSize = `font-size: ${size}px;`;
+   const styleArray = (() => {
+      if (!props) return [];
+      const { lineHeight, style, weight } = props;
+      const lineH = typeOrUndefined(lineHeight, `line-height: ${lineHeight}px;`);
+      const fontStyle = typeOrUndefined(style, `font-style: ${style};`);
+      const fontWeight = typeOrUndefined(weight,
+         `font-weight: ${typeof weight === 'number' ? weight + 'px' : weight};`
+      );
+      return [lineH, fontStyle, fontWeight];
+   })();
+   styleArray.push(fontSize);
+   return css`${styleArray.join().replace(/,/g, '')}`;
+};
+
+type StandardType = 'normal' | 'initial' | 'inherit' | '';
+type FontStyleType =  'italic' | 'oblique' | StandardType;
+type FontWeightType = number | 'bold' | 'bolder' | 'lighter' | StandardType ;
+
+export const font = (
+   size: FontTypes | number,
+   lineHeight?: number | '',
+   style?: FontStyleType,
+   weight?: FontWeightType
+) => {
+   const rest = { style, weight };
+   return typeof size === 'number'
+      ? setFont(size, { lineHeight: isValid(lineHeight), ...rest })
+      : setFont(fonts[size][0], { lineHeight: fonts[size][1], ...rest });
+};
+
+// COLORS
 type IColors = { [key in ColorType]: string };
 
 export const colors: IColors = {
@@ -88,6 +137,7 @@ export const colors: IColors = {
    ninja: '#fafaf0', // back
    lightGreen: '#6bff60',
    coral: '#ff7a59',
+   red: '#f00',
    transparent: '#0000',
 };
 
@@ -113,6 +163,7 @@ export type ColorType = 'darkest'
    | 'ninja'
    | 'lightGreen'
    | 'coral'
+   | 'red'
    | 'transparent';
 
 export const color = (foreColor: ColorType | OtherColor, important?: boolean) => css`
@@ -128,8 +179,15 @@ export const backgroundColor = (backColor: ColorType | OtherColor, important?: b
    } ${important && css`!important`};
 `;
 
+export const fill = (fillColor: ColorType | OtherColor, important: boolean = true) => css`
+fill: ${typeof fillColor === 'object'
+      ? fillColor.other
+      : colors[fillColor]
+   } ${important && css`!important`};
+`;
+
 export const fullWidthWithoutScrollbar = css`
    box-sizing: border-box;
-   padding: ${scrollbarWidth};
+   padding-right: ${scrollbarWidth}px;
    width: 100vw;
 `;

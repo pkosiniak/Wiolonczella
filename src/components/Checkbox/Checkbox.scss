@@ -1,10 +1,10 @@
-/* The container */
+$gold:#ce9c12;
 
+/* The container */
 .container {
     display: block;
     position: relative;
     padding-left: 35px;
-    margin-bottom: 12px;
     cursor: pointer;
     font-size: 22px;
     -webkit-user-select: none;
@@ -13,9 +13,7 @@
     user-select: none;
 }
 
-
 /* Hide the browser's default checkbox */
-
 .container input {
     position: absolute;
     opacity: 0;
@@ -24,9 +22,7 @@
     width: 0;
 }
 
-
 /* Create a custom checkbox */
-
 .checkmark {
     margin-top: 3px;
     position: absolute;
@@ -42,16 +38,13 @@
 
 
 /* On mouse-over, add a grey background color */
-
 .container:hover input~.checkmark {
     border-color: #bbb;
     border-style: solid;
     background-color: #e8e8e8;
 }
 
-
 /* When the checkbox is checked, add a blue background */
-
 .container input:checked~.checkmark {
     border-color: #ddd;
     background-color: #f8f8f8;
@@ -62,31 +55,25 @@
     background-color: #e8e8e8;
 }
 
-
 /* Create the checkmark/indicator (hidden when not checked) */
-
 .checkmark:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-
 /* Show the checkmark when checked */
-
 .container input:checked~.checkmark:after {
     display: block;
 }
 
-
 /* Style the checkmark/indicator */
-
 .container .checkmark:after {
     left: 9px;
     top: -6px;
     width: 7px;
     height: 16px;
-    border: solid var(--gold);
+    border: solid $gold;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);

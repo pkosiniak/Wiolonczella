@@ -45,12 +45,20 @@ export const ColumnSize: ColumnSizeType[] = [
    { to: mobile, margin: 1 },
 ];
 
-const Column = styled.div`
+export const ColumnStyle = css`
    ${xDesktop()}
    ${desktop()}
    ${tablet()}
    ${sTablet()}
    ${mobile()}
+`;
+
+const Column = styled.div`
+   ${ColumnStyle}
+`;
+
+export const ColumnArticle = styled.article`
+   ${ColumnStyle}
 `;
 
 export default Column;

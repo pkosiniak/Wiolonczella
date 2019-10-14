@@ -22,14 +22,14 @@ const LoremIpsum: React.FC<LoremIpsumProps> = ({ paragraphs = 20, useColumn = fa
 
    const onClick = () => setColumn((prevState) => !prevState);
 
-   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => setNumberOfP(+event.target.value)
+   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => setNumberOfP(+event.target.value);
 
    const body = (
       <div style={{ margin: '24px 0' }}>
          {Lipsum.slice(0, numberOfP).map((paragraf, i) =>
             (<Paragraph key={i}>{paragraf}</Paragraph>)
          )}
-      </div>)
+      </div>);
 
    return (
       <>

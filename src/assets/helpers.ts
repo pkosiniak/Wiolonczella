@@ -14,9 +14,14 @@ export const hideScrollbar = (hide: boolean) => {
    windowResizeListenerWorker();
 };
 
+export const delayedHideScrollbar = (hide: boolean, timeout: number) =>
+   setTimeout(() => hideScrollbar(hide), timeout);
+
+export const getReverseScrollbarWidth = () => getScrollbarWidth() ? 0 : scrollbarWidth;
+
 export const windowResizeListenerWorker = () => {
    const root = document.getElementById('root');
    if (!root) return;
-   root.style.paddingRight = `${getScrollbarWidth() ? 0 : scrollbarWidth + 1}px`;
+   root.style.marginRight = `${getScrollbarWidth() ? 0 : scrollbarWidth + 1}px`;
    root.style.width = window.innerWidth.toString();
 };

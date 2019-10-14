@@ -54,12 +54,11 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
             document.addEventListener('click', this.handleOutsideClick);
             document.addEventListener('touchstart', this.handleOutsideClick);
          });
-      }
-      else {
+      } else {
          setTimeout(() => this.setState({ isOpen: false }), P.duration / 5 * 1000 + 1);
          this.removeOutsideClickListener();
       }
-   }
+   };
 
    render() {
       const { className, trigger, children, useAnimation } = this.props;

@@ -6,14 +6,17 @@ import Cookies from './modules/Cookies/Cookies';
 import Header from './modules/Header/Header';
 import './styles/App.scss';
 
-const App: React.FC = () => (
+const App: React.FC = () => {
+   const policyRef = React.createRef<HTMLElement>();
+   return (
       <>
          <Header />
          <Nav />
-         <Main />
-         <Footer />
-         <Cookies />
+         <Main policyRef={policyRef} />
+         <Footer policyRef={policyRef} />
+         <Cookies policyRef={policyRef} />
       </>
    );
+};
 
 export default App;

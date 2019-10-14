@@ -4,7 +4,10 @@ import {
    imgSrc,
    mediaTo,
    fullWidthWithoutScrollbar,
-   backgroundColor
+   backgroundColor,
+   color,
+   font,
+   setFont
 } from '../../assets/styles';
 
 export const HeaderWrapper = styled.header`
@@ -15,9 +18,8 @@ export const HeaderWrapper = styled.header`
    ${fullWidthWithoutScrollbar}
    height: 100%;
    text-align: center;
-   /* background-color: ${colors.darker}; */
    ${backgroundColor('darkest')}
-   color: ${colors.white};
+   ${color('white')}
 `;
 
 export const HeaderBackgroundImage = styled.div`
@@ -28,7 +30,7 @@ export const HeaderBackgroundImage = styled.div`
    box-shadow: inset 0 0 200px black;
    background-size: 150%;
    ${mediaTo('desktop')} {
-        background-size: 190%;
+      background-size: 190%;
    }
 `;
 
@@ -40,33 +42,41 @@ export const PageHeadersWrapper = styled.div`
 `;
 
 const welcomeHeader = keyframes`
-    from {
-        color: transparent;
-    }
-    to {
-        color: ${colors.white};
-    }
+   from {
+   ${color('transparent')}
+   }
+   to {
+   ${color('white')}
+   }
 `;
 const animatedHeader = css`
-    animation-duration: 3s;
-    animation-name: ${welcomeHeader};
+   animation-duration: 3s;
+   animation-name: ${welcomeHeader};
 `;
 
 export const MainTitle = styled.h1`
    font-family: lobster, sans-serif;
-   font-size: 60px;
-   font-style: italic;
-   padding-left: 10%;
-   padding-right: 10%;
+   ${setFont(60, { style: 'italic' })};
+   ${mediaTo('sTablet')} {
+      ${font(50)};
+   }
+   ${mediaTo('mobile')} {
+      ${font(40)};
+   }
+   padding: 0 10%;
    ${animatedHeader};
 `;
 
 export const Subtitle = styled.h2`
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   font-weight: bold;
-   font-size: 28px;
-   padding-left: 10%;
-   padding-right: 10%;
+   ${setFont(28, { weight: 'bold' })};
+   ${mediaTo('sTablet')} {
+      ${font(24)};
+   }
+   ${mediaTo('mobile')} {
+      ${font(20)};
+   }
+   padding: 0 10%;
    animation-delay: 1s;
    animation-fill-mode: both;
    ${animatedHeader};
