@@ -1,19 +1,16 @@
 import React from 'react';
-import { DescriptionData } from '../../../../components/Main.components/data/Main.content';
-import { naviLinks } from '../../../../components/data/NaviLink.json';
-// import './styles/Description.scss';
-// import './styles/Main.Components.scss';
 import styled from 'styled-components';
+import { DescriptionData } from '../../../../assets/data/Main.content';
+import { navLinks } from '../../../../assets/data/NavLink.json';
 import { font } from '../../../../assets/styles';
 import Styled from '../../../../components/Styles';
 
-const lData = naviLinks.Description;
+const lData = navLinks.Description;
 const data = DescriptionData;
 
 const Wrapper = Styled.section;
 const InnerWrapper = styled.div`
    ${font('paragraph')};
-   font-family: Helvetica,Arial,sans-serif;
 `;
 const H3 = Styled.h3;
 const P = Styled.p;

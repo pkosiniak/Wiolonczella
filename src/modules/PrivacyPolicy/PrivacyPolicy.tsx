@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
-import { Policy } from '../../components/data/Policy.json';
+import { Policy } from '../../assets/data/Policy.json';
 import * as P from './parts';
 import Body from './PolicyBody';
 import IconButton from '../../components/IconButton/IconButton';
 import Modal, { ToggleType } from '../../components/Modal/Modal';
-import { getPosition } from '../../assets/setAlignment';
+import { getPosition } from '../../assets/alignment';
 import { Icons } from '../../assets/constants';
 
 const data = Policy.Header;

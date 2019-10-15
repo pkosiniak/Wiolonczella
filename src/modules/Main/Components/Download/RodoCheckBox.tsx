@@ -1,5 +1,5 @@
 import React from 'react';
-import { DownloadData } from '../../../../components/Main.components/data/Main.content';
+import { DownloadData } from '../../../../assets/data/Main.content';
 import { Col } from '../../../../components/Grid';
 import * as P from './parts';
 import Link from '../../../../components/Link/Link';

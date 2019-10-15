@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { mediaTo, backgroundColor } from '../assets/styles';
+import { mediaTo, backgroundColor, families } from '../assets/styles';
 
 interface StyledButtonGroupProps { top?: number; bottom?: number; }
 
@@ -35,7 +35,7 @@ interface StyledShowButtonProps {
 
 export const Body = styled.div<{backColor: boolean}>`
    ${({backColor}) => backgroundColor(backColor ? 'white' : 'transparent', true)};
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+   font-family: ${families.apple}
 `;
 
 export const StyledShowButton = styled.button<StyledShowButtonProps>`

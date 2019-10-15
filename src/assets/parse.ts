@@ -8,4 +8,4 @@ export const typeOrUndefined = <T extends any, R extends {}>(value: T, toReturn?
    const parsed = isValid<T>(value);
    if (typeof parsed === 'undefined') return undefined;
    return toReturn || parsed;
-}
+};

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { opinions } from '../../../../components/Main.components/data/Opinions.content.json';
-import { naviLinks } from '../../../../components/data/NaviLink.json';
-import { OpinionData } from '../../../../components/Main.components/data/Main.content';
+import { opinions } from '../../../../assets/data/Opinions.content.json';
+import { navLinks } from '../../../../assets/data/NavLink.json';
+import { OpinionData } from '../../../../assets/data/Main.content';
 import styled from 'styled-components';
 import { font, color } from '../../../../assets/styles';
 import Styled from '../../../../components/Styles';
 
 const oData = opinions;
-const lData = naviLinks.Opinins;
+const lData = navLinks.Opinions;
 const data = OpinionData;
 
 const Wrapper = Styled.section;
@@ -18,24 +18,17 @@ const H4 = styled(Styled.h4)`
 const H5 = styled(Styled.h5)`
    margin-top: 0;
 `;
-const Article = styled.article`
-   & > ${Styled.p} {
-      ${color('darker')}
-      ${font('opinions')}
-   }
+const Article = styled.article``;
+
+const P = styled(Styled.p)`
+   ${color('darker')}
+   ${font('opinions')}
 `;
-const P = Styled.p;
 
 const Opinions: React.FC = () => {
-
-   const Lines = (lines: string[]) =>
-      (
-         lines.map((line, i) => (
-            <P key={'l' + i}>
-               {line}
-            </P>
-         ))
-      );
+   const Lines = (lines: string[]) => lines.map((line, i) => (
+      <P key={'l' + i}>{line}</P>
+   ));
 
    return (
       <Wrapper>

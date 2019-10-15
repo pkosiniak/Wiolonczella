@@ -1,6 +1,6 @@
 import React from 'react';
 import * as P from './parts';
-import { Policy } from '../../components/data/Policy.json';
+import { Policy } from '../../assets/data/Policy.json';
 import Expandable from '../../components/Expandable/Expandable';
 import Responsive from '../../components/Responsive/Responsive';
 import Link from '../../components/Link/Link';

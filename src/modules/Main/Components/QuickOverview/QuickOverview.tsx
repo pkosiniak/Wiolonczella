@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
-import * as QuickOverviewData from '../../../../components/Main.components/data/Main.content';
-import { naviLinks } from '../../../../components/data/NaviLink.json';
+import * as QuickOverviewData from '../../../../assets/data/Main.content';
+import { navLinks } from '../../../../assets/data/NavLink.json';
 import styled from 'styled-components';
 import { mediaTo, mediaFrom } from '../../../../assets/styles';
 import Styled from '../../../../components/Styles';
 
-const lData = naviLinks.QuickOverview;
+const lData = navLinks.QuickOverview;
 const data = QuickOverviewData.QuickOverviewData;
 
 const Wrapper = Styled.section;

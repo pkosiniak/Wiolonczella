@@ -6,6 +6,7 @@ import Column from '../components/Column/Column';
 import * as P from './parts';
 import { ShowButtonGroup } from './ShowButtonsGroup';
 import { parseBool } from './helpers';
+import { Link } from 'react-router-dom';
 
 interface DemoProps {
    demoElement: JSX.Element;
@@ -85,6 +86,9 @@ class Playground extends React.Component<{}, DemosState> {
       const getModules = Modules.map((demo, i) => <MemoDemoComponent key={i} demoElement={demo} showDemo={showModules[i]} />);
       return (
          <P.Body backColor={!useBackColor} id="playground">
+            <Link to="/" style={{position: 'fixed', left: 0, bottom: 1, zIndex: 10000 }}>
+               <P.StyledShowButton noWidth isActive>$$</P.StyledShowButton>
+            </Link>
             {showAllButtons && (
                <P.StyledDemoButtonGroup top={0} >
                   <ShowButtonGroup demos={Modules} name="Modules" showDemos={showModules} setShowDemos={this.setShowModules} />

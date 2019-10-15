@@ -1,12 +1,12 @@
 import React from 'react';
-import { CookiesData } from '../../components/data/Body.json';
-import { naviLinks } from '../../components/data/NaviLink.json';
+import { CookiesData } from '../../assets/data/Body.json';
+import { navLinks } from '../../assets/data/NavLink.json';
 import * as P from './parts';
 import Link from '../../components/Link/Link';
 import { Icons } from '../../assets/constants';
-import { getPosition } from '../../assets/setAlignment';
+import { getPosition } from '../../assets/alignment';
 
-const navData = naviLinks.home;
+const navData = navLinks.home;
 const data = CookiesData;
 
 interface CookiesProps {

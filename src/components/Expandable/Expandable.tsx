@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import * as P from './parts';
 import { isFunction } from '../../assets/parse';
-import { getPosition } from '../../assets/setAlignment';
+import { getPosition } from '../../assets/alignment';
 import { Icons } from '../../assets/constants';
 
 export type ToggleType = ReturnType<(Expandable['getToggle'])>;
@@ -108,7 +108,7 @@ class Expandable extends React.Component<ExpandableProps, ExpandableState> {
                {getTrigger}
                {this.getToggleElements()}
             </P.TriggerWrapper>
-            <P.LayoutWrapper isOpen={isOpen}            >
+            <P.LayoutWrapper isOpen={isOpen}>
                {getChildren}
             </P.LayoutWrapper>
          </P.Wrapper>
@@ -116,4 +116,6 @@ class Expandable extends React.Component<ExpandableProps, ExpandableState> {
    }
 }
 
-export default Expandable;
+const ExpandableMemo = React.memo(Expandable);
+ExpandableMemo.displayName = 'Expandable';
+export default ExpandableMemo;

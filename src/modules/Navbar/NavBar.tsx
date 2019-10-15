@@ -1,5 +1,5 @@
 import React from 'react';
-import { naviLinksArray as navLinksArray } from '../../components/data/NaviLink.json';
+import { navLinksArray } from '../../assets/data/NavLink.json';
 import Responsive from '../../components/Responsive/Responsive';
 import * as P from './parts';
 import Column from '../../components/Column/Column';
@@ -44,7 +44,7 @@ export const Nav: React.FC = () => {
                   ? (
                      <Dropdown
                         useAnimation
-                        trigger={<P.BurgerIconWrapper icon={Icons.burger}  />}
+                        trigger={<P.BurgerIconWrapper icon={Icons.burger} />}
                      >
                         {dropdownLayout}
                      </Dropdown>

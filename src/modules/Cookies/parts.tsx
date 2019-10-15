@@ -42,7 +42,6 @@ export const HomeButton = styled(LinkIconButton)<HomeButtonProps>`
    position: fixed;
    bottom: ${({ height }) => height + 3}px;
    right: ${getReverseScrollbarWidth() + 8}px;
-   /* margin: 0 ${getReverseScrollbarWidth() + 8}px  3px; */
    ${({hide, height}) => hide ? css`
          @keyframes buttonAnimation {
             0% { bottom: ${height + 3}px; }

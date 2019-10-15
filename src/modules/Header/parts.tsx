@@ -1,14 +1,12 @@
 import styled, { css, keyframes } from 'styled-components';
 import {
-   colors,
    imgSrc,
    mediaTo,
    fullWidthWithoutScrollbar,
    backgroundColor,
    color,
-   font,
-   setFont
 } from '../../assets/styles';
+import Styled from '../../components/Styles';
 
 export const HeaderWrapper = styled.header`
 	position: relative;
@@ -23,7 +21,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const HeaderBackgroundImage = styled.div`
-   background-color: ${colors.darkest};
+   ${backgroundColor('black')}
    background-image: ${imgSrc};
    background-position: center;
    background-repeat: no-repeat;
@@ -35,18 +33,16 @@ export const HeaderBackgroundImage = styled.div`
 `;
 
 export const PageHeadersWrapper = styled.div`
-   font-weight: normal;
-   background-color: transparent;
-   padding-top: 10px;
-   padding-bottom: 10px;
+   ${backgroundColor('transparent')}
+   padding: 10px 0;
 `;
 
 const welcomeHeader = keyframes`
    from {
-   ${color('transparent')}
+      ${color('transparent')}
    }
    to {
-   ${color('white')}
+      ${color('white')}
    }
 `;
 const animatedHeader = css`
@@ -54,29 +50,11 @@ const animatedHeader = css`
    animation-name: ${welcomeHeader};
 `;
 
-export const MainTitle = styled.h1`
-   font-family: lobster, sans-serif;
-   ${setFont(60, { style: 'italic' })};
-   ${mediaTo('sTablet')} {
-      ${font(50)};
-   }
-   ${mediaTo('mobile')} {
-      ${font(40)};
-   }
-   padding: 0 10%;
+export const MainTitle = styled(Styled.h1)`
    ${animatedHeader};
 `;
 
-export const Subtitle = styled.h2`
-   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   ${setFont(28, { weight: 'bold' })};
-   ${mediaTo('sTablet')} {
-      ${font(24)};
-   }
-   ${mediaTo('mobile')} {
-      ${font(20)};
-   }
-   padding: 0 10%;
+export const Subtitle = styled(Styled.h2)`
    animation-delay: 1s;
    animation-fill-mode: both;
    ${animatedHeader};

@@ -35,13 +35,13 @@ export const NavWrapper = styled.nav`
    position: sticky;
    top: 0px;
    margin-right: auto;
-   background-color: ${colors.darkest};
-   color: ${colors.light};
+   ${backgroundColor('darkest')}
+   ${color('light')}
    z-index: 1000;
    ${fullWidthWithoutScrollbar}
 
    ${mediaTo('tablet')} {
-      background-color: transparent;
+      ${backgroundColor('transparent')}
       width: fit-content;
    }
 `;
@@ -69,7 +69,9 @@ export const DropdownLayout = styled.menu`
    }
 `;
 
-export const NavLinkButton = styled(LinkButton) <{ height?: number }>`
+interface NavLinkButtonProps { height?: number; }
+
+export const NavLinkButton = styled(LinkButton)<NavLinkButtonProps>`
    height: ${({ height }) => height && height + 'px'};
    padding: 8px 12px;
    display: flex;
@@ -77,7 +79,6 @@ export const NavLinkButton = styled(LinkButton) <{ height?: number }>`
    &>button {
       ${color('light')}
       ${font('navbar')}
-      font-family: Lato, sans-serif;
       letter-spacing: 2px;
    }
    &:hover {
@@ -102,10 +103,9 @@ export const StyledHomeIcon = styled(Icon)`
 `;
 
 export const BurgerIconWrapper = styled(Icon)`
-   font-size: 28px;
    padding: 16px;
-   background-color: transparent;
+   ${backgroundColor('transparent')}
    position: sticky;
    text-align: start;
-   color: ${colors.darkGrey};
+   ${color('darkGrey')};
 `;

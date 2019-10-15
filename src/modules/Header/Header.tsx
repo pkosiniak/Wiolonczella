@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { HeaderData } from '../../components/data/Body.json';
+import React from 'react';
+import { HeaderData } from '../../assets/data/Body.json';
 import * as P from './parts';
 
 const data = HeaderData;

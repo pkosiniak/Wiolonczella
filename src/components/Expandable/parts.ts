@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 import Icon from '../Icon/Icon';
-import { font as Font, backgroundColor, colors } from '../../assets/styles';
+import { setFont, backgroundColor, colors, families } from '../../assets/styles';
 import { isFirefox } from '../../assets/browsers';
 
 const ArrowRotate = keyframes`
@@ -55,7 +55,7 @@ export const Wrapper = styled.div<WrapperProps>`
    display: flex;
    flex-direction: column;
    ${({ isOpen, minHeight }) => isFirefox
-      && `max-height: ${isOpen ? '100%' : `${minHeight}px`}`};
+      && `max-height: ${isOpen ? 'calc(100% + 40px)' : `${minHeight}px`}`};
 `;
 
 export const TriggerWrapper = styled.span`
@@ -118,9 +118,9 @@ interface ToggleTextProps {
 
 export const ToggleText = styled.i<ToggleTextProps>`
    margin-left: 8px;
-   font-family: monospace;
+   /* font-family: monospace; */
    text-align: right;
-   ${({ font }) => Font(font.size, font.lineHeight)};
+   ${({ font }) => setFont(font.size, {lineHeight: font.lineHeight, family: families.monospace})};
 `;
 
 export interface LayoutWrapperProps {

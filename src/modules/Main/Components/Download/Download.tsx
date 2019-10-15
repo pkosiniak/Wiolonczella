@@ -1,21 +1,16 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
-import { DownloadData } from '../../../../components/Main.components/data/Main.content';
-// import DownloadAccept from './DownloadAccept';
-import { naviLinks } from '../../../../components/data/NaviLink.json';
-// import './styles/Download.scss';
-// import PrivacyPolicy from '../PrivacyPolicy';
-// import Footer from '../Footer';
+import { DownloadData } from '../../../../assets/data/Main.content';
+import { navLinks } from '../../../../assets/data/NavLink.json';
 import * as P from './parts';
 import Responsive from '../../../../components/Responsive/Responsive';
-// import Link  from '../../../../components/Link/Link';
 import { Row, Col } from '../../../../components/Grid';
 import RodoCheckBox from './RodoCheckBox';
 import InputWrapper from './InputWrapper';
 import ErrorMessage from './ErrorMessage';
 import { withRouter, RouteComponentProps } from 'react-router';
 
-const nData = naviLinks.Download;
+const nData = navLinks.Download;
 const data = DownloadData;
 
 export interface DownloadProps {
@@ -97,6 +92,7 @@ class Download extends React.Component<DownloadType, DownloadState> {
          this.setState({ nameInput: '' });
          this.setState({ emailInput: '' });
          this.setState({ accept: !accept });
+         document.body.removeChild(link);
       },
          (reason) => {
             // tslint:disable-next-line: no-console

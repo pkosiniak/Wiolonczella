@@ -1,6 +1,6 @@
 import React from 'react';
 import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy';
-import { FooterData } from '../../components/data/Body.json';
+import { FooterData } from '../../assets/data/Body.json';
 import * as P from './parts';
 import Link from '../../components/Link/Link';
 import { ToggleType } from '../../components/Modal/Modal';
@@ -30,7 +30,6 @@ class Footer extends React.Component<FooterProps, FooterState> {
          <Link
             ninjaActive
             href={data.created.LinkRef}
-            /*id="githubLink"*/
             rel="noopener noreferrer"
             target="_blank"
          >
@@ -57,7 +56,11 @@ class Footer extends React.Component<FooterProps, FooterState> {
                   </P.FooterPolicy>}
             </PrivacyPolicy>
             <P.TextWrapper>
-               {[data.created.Version, this.CreatedBy(), data.created.Year].map((item, i) => (
+               {[
+                  data.created.Version,
+                  this.CreatedBy(),
+                  data.created.Year,
+               ].map((item, i) => (
                   <P.P key={i}>{item}</P.P>
                ))}
             </P.TextWrapper>

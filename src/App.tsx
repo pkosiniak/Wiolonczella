@@ -3,8 +3,7 @@ import Nav from './modules/Navbar/NavBar';
 import Main from './modules/Main/Main';
 import Footer from './modules/Footer/Footer';
 import Cookies from './modules/Cookies/Cookies';
-import Header from './modules/Header/Header';
-import './styles/App.scss';
+import Header from './modules/Header';
 
 const App: React.FC = () => {
    const policyRef = React.createRef<HTMLElement>();

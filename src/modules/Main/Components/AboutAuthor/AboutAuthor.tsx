@@ -1,6 +1,6 @@
 import React from 'react';
-import { AboutAuthorData } from '../../../../components/Main.components/data/Main.content';
-import { naviLinks as navLinks } from '../../../../components/data/NaviLink.json';
+import { AboutAuthorData } from '../../../../assets/data/Main.content';
+import { navLinks } from '../../../../assets/data/NavLink.json';
 import styled from 'styled-components';
 import { mediaTo, font } from '../../../../assets/styles';
 import Styled from '../../../../components/Styles';

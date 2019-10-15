@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { DownloadData } from '../../../../components/Main.components/data/Main.content';
+import { DownloadData } from '../../../../assets/data/Main.content';
 import { Grid, Col, Row } from '../../../../components/Grid';
 import { mediaTo, color, font, backgroundColor } from '../../../../assets/styles';
 import Styled from '../../../../components/Styles';
@@ -42,6 +42,7 @@ export const Button = styled.button`
    ${backgroundColor('gold')}
    border: none;
    color: white;
+   ${color('white')}
    ${font(20, 28)};
    text-decoration: none;
    padding: 17px 16px;
@@ -52,7 +53,7 @@ export const Button = styled.button`
    max-width: 280px;
 
    ${mediaTo('sTablet')} {
-      ${font(24)};
+      ${font('downloadButtonMobile')};
       padding: 20px 16px;
    }
 

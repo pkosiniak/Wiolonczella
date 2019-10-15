@@ -18,7 +18,10 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const Header = styled.h2`
-   font-family: Helvetica, Arial, sans-serif;
+   ${font('policyHeader')}
+   ${mediaTo('mobile')} {
+      ${font('policyHeaderMobile')}
+   }
 `;
 
 export const customScrollbar = css`

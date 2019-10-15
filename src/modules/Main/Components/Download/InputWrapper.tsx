@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { DownloadData } from '../../../../components/Main.components/data/Main.content';
+import { DownloadData } from '../../../../assets/data/Main.content';
 import * as P from './parts';
 
 const data = DownloadData;

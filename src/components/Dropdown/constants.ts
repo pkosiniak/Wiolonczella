@@ -1,4 +1,4 @@
-import { AlignType } from '../../assets/setAlignment';
+import { AlignType } from '../../assets/alignment';
 
 export interface DropdownTriggerProps<TP = {}> {
    onDropdownToggle: () => void;

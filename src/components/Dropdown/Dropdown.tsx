@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import * as C from './constants';
 import * as P from './parts';
 import { isFunction } from '../../assets/parse';
-import { setAlignment } from '../../assets/setAlignment';
+import { setAlignment } from '../../assets/alignment';
 
 export type ToggleType = ReturnType<(Dropdown['getToggle'])>;
 

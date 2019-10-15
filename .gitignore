@@ -25,6 +25,7 @@
 *.json
 *.txt
 *.zip
+*.ttf
 .editorconfig
 
 npm-debug.log*

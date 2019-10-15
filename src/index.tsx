@@ -14,6 +14,8 @@ const body = document.getElementsByTagName('body')[0];
 if (body) {
    body.style.overflowX = 'hidden';
    body.style.backgroundColor = (colors.light);
+   if (body.parentElement)
+      body.parentElement.style.scrollBehavior = 'smooth';
 }
 
 // If you want your app to work offline and load faster, you can change

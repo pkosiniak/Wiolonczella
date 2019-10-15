@@ -5,10 +5,32 @@ export const section = styled.section`
    margin: 16px;
 `;
 
+export const h1 = styled.h1`
+   font-family: lobster, sans-serif;
+   ${font('h1', '', { style: 'italic', weight: 'normal' })};
+   ${mediaTo('sTablet')} {
+      ${font(50)};
+   }
+   ${mediaTo('mobile')} {
+      ${font(40)};
+   }
+   padding: 0 10%;
+`;
+
+export const h2 = styled.h2`
+   ${font('h2', '', { weight: 'bold' })};
+   ${mediaTo('sTablet')} {
+      ${font(24)};
+   }
+   ${mediaTo('mobile')} {
+      ${font(20)};
+   }
+   padding: 0 10%;
+`;
+
 export const h3 = styled.h3`
    ${color('gold')}
    ${font('h3')}
-   font-family: Lato, sans-serif;
    margin: 48px 0 36px;
    padding: 0 15%;
    ${mediaTo('sTablet')} {
@@ -22,7 +44,6 @@ export const h3 = styled.h3`
 export const h4 = styled.h4`
    ${color('darker')}
    ${font('h4')}
-   font-family: Lato, sans-serif;
    margin: 40px 0 32px;
    padding: 0 5%;
    ${mediaTo('sTablet')} {
@@ -37,7 +58,7 @@ export const h5 = styled.h5`
    margin: 24px 0;
    padding: 0 7%;
    ${color('darker')}
-   ${font('h5', '', '', 'normal')}
+   ${font('h5', '', { weight: 'normal' })}
    letter-spacing: 1px;
    ${mediaTo('sTablet')} {
       padding: 0 5%;
@@ -54,6 +75,7 @@ export const li = styled.li`
 `;
 
 export const ul = styled.ul`
+   ${font('paragraph')}
    margin: 20px;
    padding-left: 16px;
    ${mediaTo('mobile')} {
@@ -66,7 +88,6 @@ export const p = styled.p`
    ${color('darkest')}
    margin: 10px;
    ${font('paragraph')}
-   font-family: Helvetica,Arial,sans-serif;
    overflow-wrap: break-word;
    word-wrap: break-word;
    word-break: break-word;
