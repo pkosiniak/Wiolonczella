@@ -7,7 +7,10 @@ const Router: React.FC = () => (
    <BrowserRouter>
       <Switch>
          <Route exact path="/" component={App} />
-         <Route path="/playground" component={Playground} />
+         {
+            process.env.NODE_ENV === 'development'
+            && <Route path="/playground" component={Playground} />
+         }
       </Switch>
    </BrowserRouter>
 );

@@ -4,8 +4,10 @@ import { FooterData } from '../../assets/data/Body.json';
 import * as P from './parts';
 import Link from '../../components/Link/Link';
 import { ToggleType } from '../../components/Modal/Modal';
+import { navLinks } from '../../assets/data/NavLink.json';
 
 const data = FooterData;
+const nData = navLinks.PrivacyPolicy;
 
 interface FooterProps {
    policyRef: React.RefObject<HTMLSpanElement>;
@@ -44,10 +46,10 @@ class Footer extends React.Component<FooterProps, FooterState> {
          <P.StyledFooter>
             <PrivacyPolicy >
                {({ toggle }: ToggleType) =>
-                  <P.FooterPolicy id="pp" >
+                  <P.FooterPolicy>
                      <P.LinkWrapper onClick={toggle} ref={policyRef}>
                         <Link
-                           to="#privacyPolicy"
+                           href={nData.hashAddress}
                            onClick={this.onClickHandler}
                         >
                            {data.links[0]}

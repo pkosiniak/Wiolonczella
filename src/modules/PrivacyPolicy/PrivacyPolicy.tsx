@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Policy } from '../../assets/data/Policy.json';
+import { navLinks } from '../../assets/data/NavLink.json';
 import * as P from './parts';
 import Body from './PolicyBody';
 import IconButton from '../../components/IconButton/IconButton';
@@ -8,6 +10,7 @@ import { getPosition } from '../../assets/alignment';
 import { Icons } from '../../assets/constants';
 
 const data = Policy.Header;
+const nData = navLinks.PrivacyPolicy;
 
 export interface PrivacyPolicyProps {
    children?: ReactNode | ((props: ToggleType) => ReactNode);
@@ -18,12 +21,20 @@ interface PrivacyPolicyState {
    wasShown: boolean;
 }
 
-class PrivacyPolicy extends React.Component<PrivacyPolicyProps, PrivacyPolicyState> {
+type PrivacyPolicyPropsType = PrivacyPolicyProps & RouteComponentProps;
+
+class PrivacyPolicy extends React.Component<PrivacyPolicyPropsType, PrivacyPolicyState> {
    state = {
       bodyTop: 0,
       wrapperTop: 0,
       wasShown: false,
    };
+
+   shouldGoBack = false;
+
+   componentDidMount() {
+      this.shouldGoBack = this.props.location.hash !== nData.hashAddress;
+   }
 
    wrapperRef = React.createRef<HTMLElement>();
    bodyRef = React.createRef<HTMLElement>();
@@ -54,11 +65,23 @@ class PrivacyPolicy extends React.Component<PrivacyPolicyProps, PrivacyPolicySta
 
    modalPrevState = false;
 
+   shouldModalOpen = () => this.props.location.hash === nData.hashAddress;
+
+   historyGoBack = () => {
+      const { history, location } = this.props;
+      if (location.hash === nData.hashAddress) {
+         this.shouldGoBack
+         ? history.goBack()
+         : history.push(location.pathname);
+      }
+   };
+
    render() {
       const { children } = this.props;
       const { bodyTop, wrapperTop } = this.state;
+
       return (
-         <Modal useColumn trigger={children} >
+         <Modal useColumn trigger={children} historyGoBack={this.historyGoBack} shouldOpen={this.shouldModalOpen()}>
             {({ toggle, isOpen }: ToggleType) => {
                if (isOpen) {
                   if (isOpen !== this.modalPrevState) {
@@ -74,9 +97,9 @@ class PrivacyPolicy extends React.Component<PrivacyPolicyProps, PrivacyPolicySta
                }
                this.modalPrevState = isOpen;
                return (
-                  <P.Wrapper ref={this.wrapperRef} id="PolicyWrapper">
+                  <P.Wrapper ref={this.wrapperRef} id={nData.address}>
                      <P.HeaderWrapper>
-                        <P.Header id="policyHeader">{data}</P.Header>
+                        <P.Header>{data}</P.Header>
                         <IconButton onClick={toggle} icon={Icons.close} />
                      </P.HeaderWrapper>
                      <P.BodyWrapper
@@ -93,4 +116,6 @@ class PrivacyPolicy extends React.Component<PrivacyPolicyProps, PrivacyPolicySta
    }
 }
 
-export default PrivacyPolicy;
+const RoutedPrivacyPolicy = withRouter(PrivacyPolicy);
+
+export default RoutedPrivacyPolicy;
