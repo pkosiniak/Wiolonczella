@@ -24,7 +24,7 @@ const Body: React.FC = () => {
 
    return (
       <Responsive>
-         {({ greaterThenOrEqualTo, isPortrait }) => (
+         {({ greaterThenOrEqualTo, isPortrait, device }) => (
             <>
                <P.H3 key="h3">{data.HeaderRodo[0]}</P.H3>
                <Expandable

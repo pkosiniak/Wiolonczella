@@ -41,12 +41,10 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
 
    componentDidMount = () => {
       window.addEventListener('resize', this.windowSizeListener);
-      window.addEventListener('orientationchange', this.windowOrientationListener);
    };
 
    componentWillUnmount = () => {
       window.removeEventListener('resize', this.windowSizeListener);
-      window.removeEventListener('orientationchange', this.windowOrientationListener);
    };
 
    windowSizeListener = () => {
@@ -57,11 +55,8 @@ export default class Responsive extends React.Component<ResponsiveProps, Respons
          isSTablet: device.name === Device.sTablet.name,
          isTablet: device.name === Device.tablet.name,
          isDesktop: device.name === Device.desktop.name,
+         isPortrait: window.matchMedia('(orientation: portrait)').matches
       });
-   };
-
-   windowOrientationListener = () => {
-      this.setState({ isPortrait: window.matchMedia('(orientation: portrait)').matches });
    };
 
    devicePicker = (width: number): IDevice => {

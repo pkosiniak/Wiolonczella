@@ -4,8 +4,10 @@ import { Col } from '../../../../components/Grid';
 import * as P from './parts';
 import Link from '../../../../components/Link/Link';
 import Checkbox from '../../../../components/Checkbox';
+import { navLinks } from '../../../../assets/data/NavLink.json';
 
 const data = DownloadData.Policy;
+const policyData = navLinks.PrivacyPolicy;
 
 interface RodoAcceptProps {
    checked: boolean;
@@ -30,7 +32,7 @@ const RodoCheckBox: React.FC<RodoAcceptProps> = ({ checked, onCheckBoxChange, on
             <P.CheckboxLabel>
                {data.FirstPart}
                <Link
-                  to="#privacyPolicy"
+                  href={policyData.hashAddress}
                   onClick={onClick}
                >
                   {data.PrivacyPolicy}

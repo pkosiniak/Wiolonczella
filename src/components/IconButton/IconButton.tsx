@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import Icon, { IconProps, setHeightWithPadding, setWidthWithPadding } from '../Icon/Icon';
+import Icon, { IconProps, setHeightWithPadding, setWidthWithPadding } from '../Icon';
 import * as P from './parts';
 
 export interface IconButtonProps {

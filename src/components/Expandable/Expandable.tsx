@@ -68,7 +68,7 @@ class Expandable extends React.Component<ExpandableProps, ExpandableState> {
             )}
             {showArrow && (
                <P.ToggleArrow
-                  noPadding
+                  paddingOrNot
                   firstOpen={prevIsFirst}
                   isOpen={isOpen}
                   icon={Icons.arrowUp}

@@ -62,9 +62,9 @@ class Download extends React.Component<DownloadType, DownloadState> {
 
    onPolicyRefClick = (event: MouseEvent) => {
       event.stopPropagation();
-      const { policyRef } = this.props;
-      if (policyRef.current && policyRef.current.click())
+      setTimeout(() => {
          this.setState({ accept: !this.state.accept });
+      }, 20);
    };
 
    onSubmitEvent = (event: FormEvent<HTMLFormElement>) => {

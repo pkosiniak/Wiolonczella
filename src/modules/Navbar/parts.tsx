@@ -103,7 +103,7 @@ export const StyledHomeIcon = styled(Icon)`
 `;
 
 export const BurgerIconWrapper = styled(Icon)`
-   padding: 16px;
+   /* padding: 16px; */
    ${backgroundColor('transparent')}
    position: sticky;
    text-align: start;

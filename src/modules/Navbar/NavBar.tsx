@@ -7,6 +7,7 @@ import Dropdown from '../../components/Dropdown';
 import { ToggleType } from '../../components/Dropdown/Dropdown';
 import { AnimatedOverlay } from '../../components/Overlay';
 import { Icons } from '../../assets/constants';
+import { iconPadding } from '../../components/Icon';
 
 const fData = navLinksArray[0];
 const data = navLinksArray.slice(1);
@@ -36,16 +37,25 @@ export const Nav: React.FC = () => {
       </>
    );
 
+   const Trigger = (
+      <P.BurgerIconWrapper
+         paddingOrNot={{
+            top: 12,
+            right: iconPadding,
+            bottom: iconPadding,
+            left: 12,
+         }}
+         icon={Icons.burger}
+      />
+   );
+
    return (
       <Responsive>
          {({ lessThenOrEqualTo }) => (
             <P.NavWrapper>
                {lessThenOrEqualTo('tablet')
                   ? (
-                     <Dropdown
-                        useAnimation
-                        trigger={<P.BurgerIconWrapper icon={Icons.burger} />}
-                     >
+                     <Dropdown useAnimation trigger={Trigger}>
                         {dropdownLayout}
                      </Dropdown>
                   ) : (

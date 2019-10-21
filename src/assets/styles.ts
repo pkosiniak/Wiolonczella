@@ -54,3 +54,52 @@ export * from './fonts';
 
 // COLORS
 export * from './colors';
+
+export interface NumericPositionProps {
+   top: number;
+   right?: number;
+   bottom?: number;
+   left?: number;
+}
+
+export class NumericPosition {
+   constructor(props?: NumericPositionProps) {
+      if (typeof props === 'undefined') return;
+      this.noProps = false;
+      const { top, right, bottom, left } = props;
+      this.top = top;
+      this.right = right;
+      this.bottom = bottom;
+      this.left = left;
+   }
+   noProps: boolean = true;
+   top?: number;
+   right?: number;
+   bottom?: number;
+   left?: number;
+
+   getAsArray = (): number[] | undefined => this.noProps
+      ? undefined
+      : [
+         typeof this.top !== 'undefined' ? this.top : 0,
+         typeof this.right !== 'undefined' ? this.right : 0,
+         typeof this.bottom !== 'undefined' ? this.bottom : 0,
+         typeof this.left !== 'undefined' ? this.left : 0,
+      ];
+
+   getAsCssString = () => {
+      let cssString: string = '';
+      if (typeof this.top === 'undefined') return cssString;
+      cssString += ` ${this.top}px`;
+      if (typeof this.right === 'undefined') return cssString;
+      cssString += ` ${this.right}px`;
+      if (typeof this.bottom === 'undefined') return cssString;
+      cssString += ` ${this.bottom}px`;
+      if (typeof this.left === 'undefined') return cssString;
+      cssString += ` ${this.left}px`;
+   };
+
+   getAsCssStringFromArray = () => this.noProps
+      ? undefined
+      : (this.getAsArray() as number[]).join('px ') + 'px';
+}

@@ -42,6 +42,7 @@ class PrivacyPolicy extends React.Component<PrivacyPolicyPropsType, PrivacyPolic
    getOffsets = (wrapper: HTMLElement | null, body: HTMLElement | null) => {
       const wrapperRect = getPosition(wrapper);
       const bodyRect = getPosition(body);
+
       this.setState({
          wrapperTop: wrapperRect ? wrapperRect.top : 0,
          bodyTop: bodyRect ? bodyRect.top : 0
@@ -71,8 +72,8 @@ class PrivacyPolicy extends React.Component<PrivacyPolicyPropsType, PrivacyPolic
       const { history, location } = this.props;
       if (location.hash === nData.hashAddress) {
          this.shouldGoBack
-         ? history.goBack()
-         : history.push(location.pathname);
+            ? history.goBack()
+            : history.push(location.pathname);
       }
    };
 
@@ -81,7 +82,12 @@ class PrivacyPolicy extends React.Component<PrivacyPolicyPropsType, PrivacyPolic
       const { bodyTop, wrapperTop } = this.state;
 
       return (
-         <Modal useColumn trigger={children} historyGoBack={this.historyGoBack} shouldOpen={this.shouldModalOpen()}>
+         <Modal
+            useColumn
+            trigger={children}
+            historyGoBack={this.historyGoBack}
+            shouldOpen={this.shouldModalOpen()}
+         >
             {({ toggle, isOpen }: ToggleType) => {
                if (isOpen) {
                   if (isOpen !== this.modalPrevState) {
@@ -100,7 +106,11 @@ class PrivacyPolicy extends React.Component<PrivacyPolicyPropsType, PrivacyPolic
                   <P.Wrapper ref={this.wrapperRef} id={nData.address}>
                      <P.HeaderWrapper>
                         <P.Header>{data}</P.Header>
-                        <IconButton onClick={toggle} icon={Icons.close} />
+                        <IconButton
+                           // FIXME: fix here x button pos right on PP
+                           onClick={toggle}
+                           icon={Icons.close}
+                        />
                      </P.HeaderWrapper>
                      <P.BodyWrapper
                         ref={this.bodyRef}

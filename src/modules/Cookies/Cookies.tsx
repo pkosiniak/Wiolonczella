@@ -6,7 +6,7 @@ import Link from '../../components/Link/Link';
 import { Icons } from '../../assets/constants';
 import { getPosition } from '../../assets/alignment';
 
-const navData = navLinks.home;
+const { home, PrivacyPolicy } = navLinks;
 const data = CookiesData;
 
 interface CookiesProps {
@@ -53,13 +53,12 @@ class Cookies extends React.Component<CookiesProps, CookiesState> {
       );
    };
 
-   // TODO: fix here button pos right
-   onClickPolicyRef = (event: MouseEvent) => {
-      event.preventDefault();
-      const ref = this.props.policyRef;
-      if (!ref || !ref.current) return;
-      ref.current.click();
-   };
+   // onClickPolicyRef = (event: MouseEvent) => {
+   //    // event.preventDefault();
+   //    const ref = this.props.policyRef;
+   //    if (!ref || !ref.current) return;
+   //    ref.current.click();
+   // };
 
    Banner = () => {
       const { isShown, hide } = this.state;
@@ -80,8 +79,8 @@ class Cookies extends React.Component<CookiesProps, CookiesState> {
                   <P.CookieText>
                      {data.Text1}
                      <Link
-                        to="#privacyPolicy"
-                        onClick={this.onClickPolicyRef}
+                        href={PrivacyPolicy.hashAddress}
+                     // onClick={this.onClickPolicyRef}
                      >
                         {data.Link}
                      </Link>
@@ -102,7 +101,7 @@ class Cookies extends React.Component<CookiesProps, CookiesState> {
       return (
          <>
             <P.HomeButton
-               href={navData.hashAddress}
+               href={home.hashAddress}
                square={48}
                icon={Icons.arrowUp}
                height={bannerHeight}
