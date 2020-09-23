@@ -22,7 +22,7 @@
 .env.production
 *.php
 *.js
-*.json
+# *.json
 *.txt
 *.zip
 *.ttf
