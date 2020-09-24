@@ -1,0 +1,26 @@
+{
+    "opinions": [{
+            "name": "Andrzej Miedza",
+            "about": "pianista, akompaniator, pedagog",
+            "lines": [
+                " Eleonora to wspaniały przykład osoby, która wychodzi poza schematy i udowadnia, że w nauce gry na instrumencie ważny jest nie wiek, ale konsekwencja, zaangażowanie i pasja.",
+                " Z pełną odpowiedzialnością mogę polecić jej książkę dorosłym, chcącym uczyć się grać, ale także młodzieży i rodzicom dzieci ze szkół muzycznych.",
+                " Tak właśnie należy podchodzić do nauki!"
+            ]
+        },
+        {
+            "name": "Joanna Bojarska",
+            "about": "studentka filolgii angielskiej",
+            "lines": [
+                "W dzieciństwie uczyłam się grać na fortepianie, ale mimo początkowych sukcesów porzuciłam naukę. Książka „Wszystko kojarzy się z wiolonczelą” omogła mi odkryć, że to nie fortepian, ale altówka jest \"moim instrumentem \". Od roku poświęcam na naukę każdą wolną chwilę i wciąż znajduję w książce pani Eleonory przydatne informacje."
+            ]
+        },
+        {
+            "name": "Zbigniew Skorek",
+            "about": "reżyser, instruktor teatralny, pedagog",
+            "lines": [
+                "Eleonora jest osobą ogromnie kreatywną, pełną radości życia i pozytywnej energii. Uparta i konsekwentna, swoją postawą motywuje innych do ziałania i spełniania marzeń. Nie zdziwiłem się, kiedy postanowiła zacząć grać na wiolonczeli - wiedziałem, że jej się to uda! Ja sam, chociaż skończyłem szkołę muzyczną wiele lat temu, po przeczytaniu jej książki zapragnąłem wrócić do grania"
+            ]
+        }
+    ]
+}
