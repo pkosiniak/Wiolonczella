@@ -1,8 +1,31 @@
 {
-	"eslint.validate": [
-	  "javascript",
-	  "javascriptreact",
-	  { "language": "typescript", "autoFix": true },
-	  { "language": "typescriptreact", "autoFix": true }
-	]
- }
+   "eslint.enable": true,
+   "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      {
+         "language": "typescriptreact",
+         "autoFix": true
+      },
+      {
+         "language": "typescript",
+         "autoFix": true
+      }
+   ],
+   "multiCommand.commands": [{
+      "command": "multiCommand.formatAndFix",
+      "interval": 50,
+      "sequence": [
+         "editor.action.formatDocument",
+         "eslint.executeAutofix",
+         "editor.action.autoFix",
+      ]
+   }],
+   "tslint.configFile": "./tslint.json",
+   "cSpell.words": [
+      "Checkmark",
+      "Unmount",
+      "monospace",
+      "scrollbar"
+   ],
+}

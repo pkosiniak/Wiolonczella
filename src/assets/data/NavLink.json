@@ -1,0 +1,70 @@
+{
+    "navLinks": {
+        "home": {
+            "text": "",
+            "address": "home",
+            "hashAddress": "#home"
+        },
+        "QuickOverview": {
+            "text": "W skrócie",
+            "address": "overview",
+            "hashAddress": "#overview"
+        },
+        "Download": {
+            "text": "Pobierz fragment",
+            "address": "download",
+            "hashAddress": "#download"
+        },
+        "Description": {
+            "text": "Opis",
+            "address": "description",
+            "hashAddress": "#description"
+        },
+        "Opinions": {
+            "text": "Opinie",
+            "address": "opinions",
+            "hashAddress": "#opinions"
+        },
+        "AboutAuthor": {
+            "text": "O Autorce",
+            "address": "author",
+            "hashAddress": "#author"
+        },
+        "PrivacyPolicy": {
+            "text": "",
+            "address": "privacyPolicy",
+            "hashAddress": "#privacyPolicy"
+        }
+    },
+    "navLinksArray": [{
+            "text": "",
+            "address": "home",
+            "hashAddress": "#home"
+        },
+        {
+            "text": "W skrócie",
+            "address": "overview",
+            "hashAddress": "#overview"
+        },
+        {
+            "text": "Pobierz fragment",
+            "address": "download",
+            "hashAddress": "#download"
+        },
+        {
+            "text": "Opis",
+            "address": "description",
+            "hashAddress": "#description"
+        },
+        {
+            "text": "Opinie",
+            "address": "opinions",
+            "hashAddress": "#opinions"
+        },
+        {
+            "text": "O Autorce",
+            "address": "author",
+            "hashAddress": "#author"
+        }
+    ]
+}

@@ -1,22 +1,21 @@
 import React from 'react';
-import Nav from './components/Nav';
-import Main from './components/Main';
-import Footer from './components/Footer';
-import Cookies from './components/Cookies';
-import Header from './components/Header';
-import './styles/App.scss';
-
+import Nav from './modules/Navbar/NavBar';
+import Main from './modules/Main/Main';
+import Footer from './modules/Footer/Footer';
+import Cookies from './modules/Cookies/Cookies';
+import Header from './modules/Header';
 
 const App: React.FC = () => {
-  return (
-    <>
-      <Header />
-      <Nav />
-      <Main />
-      <Footer />
-      <Cookies />
-    </>
-  );
-}
+   const policyRef = React.createRef<HTMLElement>();
+   return (
+      <>
+         <Header />
+         <Nav />
+         <Main policyRef={policyRef} />
+         <Footer policyRef={policyRef} />
+         <Cookies policyRef={policyRef} />
+      </>
+   );
+};
 
 export default App;
